@@ -1,4 +1,5 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { left } from "@popperjs/core";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function SideBar() {
   return (
@@ -70,8 +71,63 @@ function SideBar() {
                     Marco, scopri le opportunità offerte <b>da Ichnusa group</b>
                   </p>
                   <p>Scopri le ultime offerte di lavoro e notizie</p>
+                  <div className="seguaci" style={{ color: "grey ", fontSize: "15px" }}>
+                    <img src="/img/2.png" alt=""></img> Anche Matteo e altri 18 collegamenti seguono
+                  </div>
+                </div>
+
+                <div className="sidefoot d-flex mb-3 justify-content-center">
+                  <Button variant="outline-primary" style={{ width: "250px", borderRadius: "20px" }}>
+                    Segui
+                  </Button>
                 </div>
               </div>
+            </div>
+            <div className="sideDx3">
+              <h2 className=" mt-2" style={{ fontSize: "23px" }}>
+                <Row>
+                  <Col xs={6}>
+                    <div className="card1 d-flex" style={{ width: "400px" }}>
+                      <div className="logo">
+                        {" "}
+                        <img src="img/my.jpg" alt="" className="logo1"></img>
+                      </div>
+                      <div className="testodi">
+                        <h3 className="ms-3" style={{ color: "grey" }}>
+                          Marco Pala
+                        </h3>
+
+                        <p className="ms-3">Architetto</p>
+                        <Button variant="outline-secondary" id="btn5">
+                          Secondary
+                        </Button>
+                      </div>{" "}
+                    </div>
+                  </Col>
+                  <hr />
+                </Row>
+                <Row>
+                  <Col xs={6}>
+                    <div className="card1 d-flex" style={{ width: "400px" }}>
+                      <div className="logo">
+                        {" "}
+                        <img src="img/my.jpg" alt="" className="logo1"></img>
+                      </div>
+                      <div className="testodi">
+                        <h3 className="ms-3" style={{ color: "grey" }}>
+                          Marco Pala
+                        </h3>
+
+                        <p className="ms-3">Architetto</p>
+                        <Button variant="outline-secondary" id="btn5">
+                          Secondary
+                        </Button>
+                      </div>{" "}
+                    </div>
+                  </Col>
+                  <hr />
+                </Row>
+              </h2>
             </div>
           </Col>
         </Row>
