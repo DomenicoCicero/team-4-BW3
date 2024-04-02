@@ -18,27 +18,27 @@ const Footer = () => {
   return (
     <Container className="text-secondary " id="footer">
       <Row>
-        <Col md={2} className="fw-bold">
+        <Col xs={12} md={2} className="fw-bold">
           <p>About</p>
           <p>Community Guidelines</p>
           <p>Privacy & Terms</p>
           <p>Sales Solutions</p>
           <p>Safety Center</p>
         </Col>
-        <Col md={2} className="fw-bold">
+        <Col xs={12} md={2} className="fw-bold">
           <p>Accessibility</p>
           <p>Careers</p>
           <p>Ad Choices</p>
           <p>Mobile</p>
         </Col>
-        <Col md={2} className="fw-bold">
+        <Col xs={12} md={2} className="fw-bold">
           <p>Talent Solutions</p>
           <p>Marketing Solutions</p>
           <p>Advertising</p>
           <p>Small Business</p>
           <p>Safety Center</p>
         </Col>
-        <Col md={4}>
+        <Col xs={12} md={4}>
           <div className="d-flex">
             <AiFillQuestionCircle className="fs-2" />
             <div className="ms-2">
@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
           </div>
         </Col>
-        <Col md={2}>
+        <Col xs={12} md={2}>
           <p className="m-0">Select Language</p>
           <Form.Select aria-label="Select language" value="en">
             {allLanguages}
