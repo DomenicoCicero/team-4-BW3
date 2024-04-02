@@ -10,6 +10,7 @@ function SideBar() {
             <p>Questo è il contenuto della prima colonna.</p>
           </Col>
           <Col xs={4} md={4}>
+            {/*  ------------------------------primo box--------------------------------------- */}
             <div className="sideDx">
               <div className="icona">
                 <h2 className="mt-2" style={{ fontSize: "23px" }}>
@@ -26,7 +27,7 @@ function SideBar() {
                   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                 </svg>
               </div>
-              <p style={{ color: "" }}>Italiano</p>
+              <p>Italiano</p>
               <hr />
               <div className="icona">
                 <h2 style={{ fontSize: "23px" }}>Lingua del Profilo</h2>
@@ -41,8 +42,9 @@ function SideBar() {
                   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                 </svg>
               </div>
-              <p style={{ color: "" }}>www.linkedin.com/MarioRossi-51814819a</p>
+              <p>www.linkedin.com/MarioRossi-51814819a</p>
             </div>
+            {/*  ------------------------------secondo box--------------------------------------- */}
             <div className="sideDx2 mt-3">
               <div className="head1">
                 <img
@@ -79,9 +81,9 @@ function SideBar() {
                 </div>
               </div>
             </div>
+            {/*   -------------------------terzo box------------------------------------ */}
             <div className="sideDx3">
-              <h2 style={{ fontSize: "22px", marginLeft: "10px", marginTop: "22px" }}>Altri profilii simili</h2>
-              {/*   -------------------------inizio card------------------------------------ */}
+              <h2 style={{ fontSize: "22px", marginLeft: "16px", marginTop: "22px" }}>Altri profilii simili</h2>
               <Row>
                 <Col xs={6}>
                   <div className="card1 d-flex" style={{ width: "400px" }}>
@@ -89,9 +91,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -108,9 +108,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -127,9 +125,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -146,9 +142,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -165,9 +159,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -180,10 +172,10 @@ function SideBar() {
                 <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
               </div>
             </div>
+            {/*  ------------------------------quarto box--------------------------------------- */}
 
-            {/*  ------------------------------quarta serie--------------------------------------- */}
             <div className="sideDx3">
-              <h2 style={{ fontSize: "22px", marginLeft: "10px", marginTop: "22px" }}>
+              <h2 style={{ fontSize: "22px", marginLeft: "16px", marginTop: "22px" }}>
                 Persone che potresti conoscere
               </h2>
               <span className="ms-3">Dalla tua scuola o università</span>
@@ -194,9 +186,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -213,9 +203,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
-                        Marco Pala
-                      </h3>
+                      <h3 className="ms-3">Marco Pala</h3>
                       <p className="ms-3">Architetto</p>
                       <Button variant="outline-secondary" id="btn5">
                         Visualizza il Profilo
@@ -232,7 +220,7 @@ function SideBar() {
                       <img src="img/my.jpg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 className="ms-3" style={{ color: "" }}>
+                      <h3 className="ms-3">
                         {/*      ----------------------------------------quinda card------------------------------------------- */}
                         Marco Pala
                       </h3>
@@ -248,8 +236,9 @@ function SideBar() {
                 <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
               </div>
             </div>
+            {/*  ------------------------------quinto box--------------------------------------- */}
             <div className="sideDx3">
-              <h2 style={{ fontSize: "22px", marginLeft: "10px", marginTop: "22px" }} className="ms-2">
+              <h2 style={{ fontSize: "22px", marginLeft: "10px", marginTop: "22px" }} className="ms-3">
                 Potrebbe interessarti
               </h2>
               <span className="ms-3">Newsletter per te</span>
@@ -260,7 +249,7 @@ function SideBar() {
                       <img src="img/3.png" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 style={{ color: "" }}>GIT-HUB</h3>
+                      <h3>GIT-HUB</h3>
                       <p>Do your best work on GitHub</p>
                       <span>Pubblicazione quindicinale</span>
                       <Button variant="outline-secondary" id="btn5" className="mt-3 mb-5">
@@ -277,7 +266,7 @@ function SideBar() {
                       <img src="img/4.jpeg" alt="" className="logo1" />
                     </div>
                     <div className="testodi">
-                      <h3 style={{ color: "" }}>THE SPARK</h3>
+                      <h3>THE SPARK</h3>
                       <p className="mb-0">Microsoft learn</p>
                       <span>Pubblicazione mennsile</span>
                       <Button variant="outline-secondary" id="btn5" className="mt-3">
@@ -291,8 +280,8 @@ function SideBar() {
                 <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
               </div>
             </div>
-            {/*  ------------------------------quarta serie--------------------------------------- */}
-            <div className="sideDx3">
+            {/*  ------------------------------sesto box--------------------------------------- */}
+            <div className="sideDx3 pt-4">
               <Row>
                 <Col xs={6}>
                   <div className="card1 d-flex" style={{ width: "400px" }}>
@@ -300,7 +289,7 @@ function SideBar() {
                       <img src="img/5.jpg" alt="" className="logo2" />
                     </div>
                     <div className="testodi">
-                      <h3 style={{ color: "" }}>I tuoi vantaggi</h3>
+                      <h3>I tuoi vantaggi</h3>
 
                       <span>Posizioni a partire da 50,000€</span>
                       <hr></hr>
@@ -315,10 +304,10 @@ function SideBar() {
                       <img src="img/7.jpeg" alt="" className="logo2" />
                     </div>
                     <div className="testodi">
-                      <h3 style={{ color: "" }}>Wave goodbye to busywork</h3>
-
-                      <span>Every day Zapier saves people 600,000 hours of busywork. Try it free.</span>
-                    </div>
+                      <h3>Wave goodbye to the wait</h3>
+                      <span>Get to work on your own</span>
+                      <hr></hr>
+                    </div>{" "}
                   </div>
                 </Col>{" "}
               </Row>
