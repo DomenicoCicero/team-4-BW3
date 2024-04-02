@@ -1,5 +1,5 @@
 import SidebarDx from "./components/SidebarDx.jsx";
-import "./App.css";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return <SidebarDx></SidebarDx>;
