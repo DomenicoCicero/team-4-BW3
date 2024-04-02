@@ -6,7 +6,7 @@ import ProfiloPage from "./components/ProfiloPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "#F4F2EE" }}>
       <ProfiloPage />
     </div>
   );

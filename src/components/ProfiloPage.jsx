@@ -6,6 +6,7 @@ import AnalisiProfilo from "./AnalisiProfilo";
 import RisorseProfilo from "./RisorseProfilo";
 import AttivitaProfilo from "./AttivitaProfilo";
 import EsperienzaProfilo from "./EsperienzaProfilo";
+import Footer from "./Footer";
 
 const ProfiloPage = () => {
   return (
@@ -24,6 +25,7 @@ const ProfiloPage = () => {
             <SideBar />
           </Col>
         </Row>
+        <Footer></Footer>
       </Container>
     </>
   );

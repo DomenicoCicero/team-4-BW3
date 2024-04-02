@@ -19,3 +19,14 @@
   top: 25px;
   right: 25px;
 }
+body {
+  background-color: #f4f2ee;
+}
+#footer {
+  margin-top: 63px;
+}
+#mynav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
