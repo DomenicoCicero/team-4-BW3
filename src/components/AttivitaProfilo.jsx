@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const AttivitaProfilo = () => {
   return (
-    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3">
+    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3" id="box12">
       <Row>
         <Col className="d-flex justify-content-between mb-4">
           <h3>Attività</h3>

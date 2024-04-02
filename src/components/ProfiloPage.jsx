@@ -7,6 +7,8 @@ import RisorseProfilo from "./RisorseProfilo";
 import AttivitaProfilo from "./AttivitaProfilo";
 import EsperienzaProfilo from "./EsperienzaProfilo";
 import Footer from "./Footer";
+import Formation from "./Formation";
+import Interests from "./Interests";
 
 const ProfiloPage = () => {
   return (
@@ -20,6 +22,8 @@ const ProfiloPage = () => {
             <RisorseProfilo />
             <AttivitaProfilo />
             <EsperienzaProfilo />
+            <Formation></Formation>
+            <Interests></Interests>
           </Col>
           <Col xs={4}>
             <SideBar />

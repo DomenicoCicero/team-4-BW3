@@ -9,7 +9,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const AnalisiProfilo = () => {
   return (
-    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3">
+    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3" id="box12">
       <Row>
         <Col xs={4}>
           <h3>Analisi</h3>

@@ -7,7 +7,7 @@ import { FaPen } from "react-icons/fa";
 
 const PannelloProfilo = () => {
   return (
-    <Container fluid>
+    <Container fluid id="box13">
       <Row className="position-relative">
         <Col>
           <img
