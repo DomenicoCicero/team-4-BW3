@@ -1,14 +1,13 @@
 import "./App.css";
+import "./App25.css";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import PannelloProfilo from "./components/PannelloProfilo";
-import AnalisiProfilo from "./components/AnalisiProfilo";
-import RisorseProfilo from "./components/RisorseProfilo";
-import AttivitaProfilo from "./components/AttivitaProfilo";
-import EsperienzaProfilo from "./components/EsperienzaProfilo";
+import ProfiloPage from "./components/ProfiloPage";
+
 function App() {
   return (
     <div className="App">
-      <EsperienzaProfilo />
+      <ProfiloPage />
     </div>
   );
 }

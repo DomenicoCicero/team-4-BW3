@@ -9,7 +9,7 @@ import { HiUsers } from "react-icons/hi";
 
 const RisorseProfilo = () => {
   return (
-    <Container fluid className="px-4 pt-3">
+    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3">
       <Row>
         <Col xs={4}>
           <h3>Risorse</h3>
