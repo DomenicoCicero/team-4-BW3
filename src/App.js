@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App25.css";
 // import navbarComp from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavbar from "./components/MyNavbar";
