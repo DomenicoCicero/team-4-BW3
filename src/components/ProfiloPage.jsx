@@ -11,13 +11,14 @@ import Formation from "./Formation";
 import Interests from "./Interests";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getFetch } from "../redux/actions";
+import { getFetch, getFetchUser } from "../redux/actions";
 import ExpModal from "./ExpModal";
+import CardExp from "./CardExp";
 
 const ProfiloPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFetch());
+    dispatch(getFetchUser());
   }, []);
   return (
     <>
@@ -38,7 +39,6 @@ const ProfiloPage = () => {
           </Col>
         </Row>
         {/* <Footer /> */}
-        <ExpModal />
       </Container>
     </>
   );

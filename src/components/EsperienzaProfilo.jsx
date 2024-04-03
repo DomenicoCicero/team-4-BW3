@@ -4,15 +4,34 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { FaPen } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import { BsBraces, BsFillBriefcaseFill } from "react-icons/bs";
 import { IoCalendarNumber } from "react-icons/io5";
 import ExpModal from "./ExpModal";
+import { useEffect } from "react";
+import { getFetchExp } from "../redux/actions";
+import CardExp from "./CardExp";
+
 const EsperienzaProfilo = () => {
+  const dispatch = useDispatch();
+
+  const expArray = useSelector(state => {
+    return state.exp.content;
+  });
+
   const user = useSelector(state => {
     return state.profilo.user;
   });
+
+  const userId = useSelector(state => {
+    return state.profilo.user._id;
+  });
+
+  useEffect(() => {
+    dispatch(getFetchExp(userId));
+  }, [userId]);
+
   return (
     <Container fluid className="px-4 pt-3 border border-secondary rounded my-3" id="box12">
       <Row>
@@ -40,13 +59,21 @@ const EsperienzaProfilo = () => {
           </div>
         </Col>
       </Row>
+
+      {expArray.map(exp => {
+        return (
+          <div key={exp._id}>
+            <CardExp exp={exp} />
+          </div>
+        );
+      })}
+
       {/*       -----------------------------------------inizio part dinamica---------------------------------- */}
-      <Row>
+      {/* <Row>
         <Col xs={1}>
           <img src="./img/7.jpeg" alt="" style={{ width: "70px" }}></img>{" "}
         </Col>
         <Col xs={11} style={{ paddingLeft: "30px" }}>
-          {/*             <div className="textexperience"> */}
           <h3>Prova2</h3>
           <p className="mb-0">esperienza0</p>
           <span>esperienza 1</span>
@@ -62,7 +89,6 @@ const EsperienzaProfilo = () => {
           <img src="./img/7.jpeg" alt="" style={{ width: "70px" }}></img>{" "}
         </Col>
         <Col xs={11} style={{ paddingLeft: "30px" }}>
-          {/*             <div className="textexperience"> */}
           <h3>Prova2</h3>
           <p className="mb-0">esperienza0</p>
           <span>esperienza 1</span>
@@ -72,7 +98,7 @@ const EsperienzaProfilo = () => {
           <h5 className="pt-3">prova2</h5>
           <hr></hr>
         </Col>
-      </Row>
+      </Row> */}
 
       {/*       -----------------------------------------fine part dinamica---------------------------------- */}
     </Container>
