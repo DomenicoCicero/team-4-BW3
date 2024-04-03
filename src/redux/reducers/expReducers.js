@@ -14,7 +14,7 @@ const expReducers = (state = initialState, action) => {
     case DELETE_EXP:
       return {
         ...state,
-        content: state.content.filter((exp) => exp._id !== action.payload),
+        content: state.content.filter(exp => exp._id !== action.payload),
       };
     case ADD_EXP:
       return {

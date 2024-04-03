@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { addExp } from "../redux/actions";
-import { useDispatch } from "react-redux";
+import { FaPen } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
-const initialForm = {
-  role: "",
-  image: "",
-  company: "",
-  startDate: "",
-  endDate: null,
-  description: "",
-  area: "",
-};
-
-const ExpModal = () => {
+const PutModal = props => {
+  const initialForm = {
+    role: props.exp.role,
+    image: props.exp.image,
+    company: props.exp.company,
+    startDate: props.exp.startDate,
+    endDate: null,
+    description: props.exp.description,
+    area: props.exp.area,
+  };
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(initialForm);
   const dispatch = useDispatch();
@@ -29,41 +26,10 @@ const ExpModal = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: jwt,
-      },
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          window.alert("Errore, riprova più tardi!");
-          throw new Error("Errore nel salvataggio delle esperienze");
-        }
-      })
-      .then(data => {
-        // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
-        dispatch(addExp(data));
-        window.alert("Esperienza salvata con successo!");
-        setForm(initialForm);
-        handleClose();
-      })
-      .catch(err => {
-        console.error("ERRORE!", err);
-      });
-  };
-
   return (
     <>
-      <Button variant="white" onClick={handleShow}>
-        <FaPlus />
+      <Button variant="warning" onClick={handleShow}>
+        <FaPen />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -74,7 +40,7 @@ const ExpModal = () => {
           <span className="text-secondary" style={{ fontSize: "10px" }}>
             * Indica che è obbligatorio
           </span>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={""}>
             <Form.Group className="my-3">
               <Form.Label>Role*</Form.Label>
               <Form.Control
@@ -184,12 +150,12 @@ const ExpModal = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* <Button variant="primary" onClick={handleClose}>
-            Salva
-          </Button> */}
+              Salva
+            </Button> */}
         </Modal.Footer>
       </Modal>
     </>
   );
 };
 
-export default ExpModal;
+export default PutModal;

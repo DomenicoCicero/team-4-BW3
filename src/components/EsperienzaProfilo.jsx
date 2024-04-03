@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { getFetchExp, deleteExp } from "../redux/actions";
 import CardExp from "./CardExp";
 import { MdDelete } from "react-icons/md";
+import PutModal from "./PutModal";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
@@ -20,15 +21,15 @@ const jwt =
 const EsperienzaProfilo = () => {
   const dispatch = useDispatch();
 
-  const expArray = useSelector((state) => {
+  const expArray = useSelector(state => {
     return state.exp.content;
   });
 
-  const user = useSelector((state) => {
+  const user = useSelector(state => {
     return state.profilo.user;
   });
 
-  const userId = useSelector((state) => {
+  const userId = useSelector(state => {
     return state.profilo.user._id;
   });
 
@@ -36,17 +37,14 @@ const EsperienzaProfilo = () => {
     dispatch(getFetchExp(userId));
   };
 
-  const deleteFetch = (expId) => {
-    fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: jwt,
-        },
-      }
-    )
-      .then((response) => {
+  const deleteFetch = expId => {
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: jwt,
+      },
+    })
+      .then(response => {
         if (response.ok) {
           dispatch(deleteExp(expId));
           window.alert("cancellato con successo");
@@ -54,10 +52,12 @@ const EsperienzaProfilo = () => {
           throw new Error("errore nella cancellazione");
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("ERRORE", err);
       });
   };
+
+  const putFetch = () => {};
 
   useEffect(() => {
     if (userId) {
@@ -67,11 +67,7 @@ const EsperienzaProfilo = () => {
   }, [dispatch, userId]);
 
   return (
-    <Container
-      fluid
-      className="px-4 pt-3 border border-secondary rounded my-3"
-      id="box12"
-    >
+    <Container fluid className="px-4 pt-3 border border-secondary rounded my-3" id="box12">
       <Row>
         <Col className="d-flex justify-content-between mb-4">
           <h3>Esperienza</h3>
@@ -88,8 +84,7 @@ const EsperienzaProfilo = () => {
                   Aggiungi posizione lavorativa
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2">
-                  <IoCalendarNumber className="me-1" /> Aggiungi pausa
-                  lavorativa
+                  <IoCalendarNumber className="me-1" /> Aggiungi pausa lavorativa
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -103,13 +98,10 @@ const EsperienzaProfilo = () => {
         return (
           <div key={i} className="d-flex align-items-center">
             <CardExp exp={exp} />
-            <Button
-              variant="danger"
-              type="button"
-              onClick={() => deleteFetch(exp._id)}
-            >
+            <Button variant="danger" type="button" className="me-2" onClick={() => deleteFetch(exp._id)}>
               <MdDelete />
             </Button>
+            <PutModal exp={exp} />
           </div>
         );
       })}
