@@ -93,7 +93,7 @@ const MyNavbar = () => {
               </Dropdown.Toggle>
               <Dropdown.Menu className="  dropdown-center">
                 <div className="row d-flex">
-                  <div className="col-6 d-flex flex-column gap-4">
+                  <div className="col-6 d-flex flex-column gap-4" id="colsx">
                     <Dropdown.Item href="#/action-1">
                       {" "}
                       <div className="d-flex align-items-center">
@@ -390,7 +390,7 @@ const MyNavbar = () => {
                       </div>
                     </Dropdown.Item>
                   </div>
-                  <div className="col-6 d-flex flex-column gap-4 ">
+                  <div className="col-6 d-flex flex-column  " id="coldx">
                     <Dropdown.Item href="#/action-4">Opzione 4</Dropdown.Item>
                     <Dropdown.Item href="#/action-5">Opzione 5</Dropdown.Item>
                     <Dropdown.Item href="#/action-6">Opzione 6</Dropdown.Item>

@@ -33,3 +33,11 @@
 .logo-icon {
   color: rgb(15, 101, 199);
 }
+#coldx {
+  display: flex;
+  gap: 45px;
+}
+#colsx {
+  display: flex;
+  gap: 27px;
+}
