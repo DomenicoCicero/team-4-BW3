@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { addExp } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
@@ -18,35 +20,45 @@ const initialForm = {
 const ExpModal = () => {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(initialForm);
+  const dispatch = useDispatch();
 
-  const userId = useSelector(state => {
+  const userId = useSelector((state) => {
     return state.profilo.user._id;
   });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: jwt,
-      },
-    })
-      .then(response => {
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`,
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: jwt,
+        },
+      }
+    )
+      .then((response) => {
         if (response.ok) {
-          window.alert("Esperienza salvata con successo!");
-          setForm(initialForm);
+          return response.json();
         } else {
           window.alert("Errore, riprova più tardi!");
           throw new Error("Errore nel salvataggio delle esperienze");
         }
       })
-      .catch(err => {
-        console.log("ERRORE!", err);
+      .then((data) => {
+        // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
+        dispatch(addExp(data));
+        window.alert("Esperienza salvata con successo!");
+        setForm(initialForm);
+        handleClose();
+      })
+      .catch((err) => {
+        console.error("ERRORE!", err);
       });
   };
 
@@ -71,7 +83,7 @@ const ExpModal = () => {
                 type="text"
                 placeholder="Esempio: Full Stack Web Developer"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     role: e.target.value,
@@ -86,7 +98,7 @@ const ExpModal = () => {
                 type="text"
                 placeholder="Esempio: FizzBuzz"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     company: e.target.value,
@@ -101,7 +113,7 @@ const ExpModal = () => {
                 type="text"
                 placeholder="Esempio: Milano"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     area: e.target.value,
@@ -116,7 +128,7 @@ const ExpModal = () => {
                 type="text"
                 placeholder="Esempio: 2022-06-16"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     startDate: e.target.value,
@@ -130,7 +142,7 @@ const ExpModal = () => {
               <Form.Control
                 type="text"
                 placeholder="Esempio: 2023-06-16"
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     endDate: e.target.value === "" ? null : e.target.value,
@@ -144,7 +156,7 @@ const ExpModal = () => {
               <Form.Control
                 type="text"
                 placeholder="Esempio: Implementing new featurese"
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     description: e.target.value || null,
