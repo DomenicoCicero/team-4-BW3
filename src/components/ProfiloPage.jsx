@@ -9,8 +9,15 @@ import EsperienzaProfilo from "./EsperienzaProfilo";
 import Footer from "./Footer";
 import Formation from "./Formation";
 import Interests from "./Interests";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getFetch } from "../redux/actions";
 
 const ProfiloPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFetch());
+  }, []);
   return (
     <>
       <MyNavbar />
@@ -29,7 +36,7 @@ const ProfiloPage = () => {
             <SideBar />
           </Col>
         </Row>
-        <Footer></Footer>
+        {/* <Footer /> */}
       </Container>
     </>
   );

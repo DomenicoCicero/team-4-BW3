@@ -4,23 +4,27 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const PannelloProfilo = () => {
+  const user = useSelector(state => {
+    return state.profilo.user;
+  });
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <Container fluid id="box13">
       <Row className="position-relative">
-        <Col>
+        <Col className="px-0">
           <img
             src="https://media.licdn.com/dms/image/D4D16AQE55sAt_zgI2g/profile-displaybackgroundimage-shrink_350_1400/0/1695315737686?e=1717632000&v=beta&t=sko7WN1lJodKnZRuaK8k-s9gdfiQOeAnnmde0WvaHzw"
             alt="copertina"
-            className="w-100"
+            className="w-100 rounded-top"
           />
           <div className="position-absolute immagine-profilo mb-1">
-            <img
-              src="https://static.vecteezy.com/ti/vettori-gratis/p1/2318271-icona-profilo-utente-vettoriale.jpg"
-              alt="profilo"
-              className="w-25 object-fit-cover rounded-circle"
-            />
+            <img src={user.image} alt="profilo" className="w-25 object-fit-cover rounded-circle" />
           </div>
           <div className="position-absolute border rounded-circle p-2 bg-white text-primary pen">
             <FaPen />
@@ -28,9 +32,11 @@ const PannelloProfilo = () => {
         </Col>
       </Row>
       <Row className="mt-5 justify-content-between">
-        <Col xs={5}>
+        <Col xs={9}>
           <div className="d-flex align-items-center">
-            <h2 className="me-2">Domenico Cicero</h2>
+            <h2 className="me-2">
+              {user.name} {user.surname}
+            </h2>
             <div className="d-flex align-items-center text-primary bordo-tratteggiato-arrotondato">
               <MdOutlineVerifiedUser />
               <span>Verifica ora</span>
@@ -43,13 +49,13 @@ const PannelloProfilo = () => {
       </Row>
       <Row>
         <Col xs={7}>
-          <h4>Studente diplomato presso liceo Scientifico Nicolò Palmeri</h4>
+          <h4>{user.email}</h4>
         </Col>
       </Row>
       <Row>
         <Col xs={6}>
           <p>
-            Palermo, Sicilia, Italia <span className="text-primary fw-semibold">Informazioni di contatto</span>
+            {user.area} <span className="text-primary fw-semibold">Informazioni di contatto</span>
           </p>
         </Col>
       </Row>

@@ -26,7 +26,7 @@ const MyNavbar = () => {
                     viewBox="0 0 24 24"
                     data-supported-dps="24x24"
                     fill="currentColor"
-                    class="mercado-match"
+                    className="mercado-match"
                     width="44"
                     height="37"
                     focusable="false"

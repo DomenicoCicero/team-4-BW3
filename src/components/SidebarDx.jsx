@@ -298,7 +298,7 @@ function SideBar() {
                 <img src="img/7.jpeg" alt="" className="logo2" />
               </div>
               <div className="testodi">
-                <h3>Wave goodbye to the wait</h3>
+                <h3 className="fs-5">Wave goodbye to the wait</h3>
                 <span>Get to work on your own</span>
                 <hr></hr>
               </div>{" "}
