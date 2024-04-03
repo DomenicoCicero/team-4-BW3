@@ -12,6 +12,10 @@ import ExpModal from "./ExpModal";
 import { useEffect } from "react";
 import { getFetchExp } from "../redux/actions";
 import CardExp from "./CardExp";
+import { MdDelete } from "react-icons/md";
+
+const jwt =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const EsperienzaProfilo = () => {
   const dispatch = useDispatch();
@@ -28,8 +32,29 @@ const EsperienzaProfilo = () => {
     return state.profilo.user._id;
   });
 
+  const deleteFetch = expId => {
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: jwt,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          window.alert("cancellato con successo");
+        } else {
+          throw new Error("errore nella cancellazione");
+        }
+      })
+      .catch(err => {
+        console.log("ERRORE", err);
+      });
+  };
+
   useEffect(() => {
-    dispatch(getFetchExp(userId));
+    if (userId) {
+      dispatch(getFetchExp(userId));
+    }
   }, [userId]);
 
   return (
@@ -39,10 +64,10 @@ const EsperienzaProfilo = () => {
           <h3>Esperienza</h3>
           <div>
             <Dropdown className="d-inline-block">
-              <Dropdown.Toggle variant="white" id="dropdown-basic">
-                {/* <FaPlus className="fs-4 me-5" /> */}
-                <ExpModal />
-              </Dropdown.Toggle>
+              {/* <Dropdown.Toggle variant="white" id="dropdown-basic"> */}
+              {/* <FaPlus className="fs-4 me-5" /> */}
+              <ExpModal />
+              {/* </Dropdown.Toggle> */}
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
@@ -60,10 +85,13 @@ const EsperienzaProfilo = () => {
         </Col>
       </Row>
 
-      {expArray.map(exp => {
+      {expArray.map((exp, i) => {
         return (
-          <div key={exp._id}>
+          <div key={i} className="d-flex align-items-center">
             <CardExp exp={exp} />
+            <Button variant="danger" type="button" onClick={() => deleteFetch(exp._id)}>
+              <MdDelete />
+            </Button>
           </div>
         );
       })}
