@@ -1,12 +1,54 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
+
+const jwt =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+
+const initialForm = {
+  role: "",
+  company: "",
+  startDate: "",
+  endDate: null,
+  description: "",
+  area: "",
+};
 
 const ExpModal = () => {
   const [show, setShow] = useState(false);
+  const [form, setForm] = useState(initialForm);
+
+  const userId = useSelector(state => {
+    return state.profilo.user._id;
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          window.alert("Esperienza salvata con successo!");
+          setForm(initialForm);
+        } else {
+          window.alert("Errore, riprova più tardi!");
+          throw new Error("Errore nel salvataggio delle esperienze");
+        }
+      })
+      .catch(err => {
+        console.log("ERRORE!", err);
+      });
+  };
 
   return (
     <>
@@ -22,12 +64,99 @@ const ExpModal = () => {
           <span className="text-secondary" style={{ fontSize: "10px" }}>
             * Indica che è obbligatorio
           </span>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="my-3">
-              <Form.Label>Qualifica*</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Retail Sales Manager" required />
+              <Form.Label>Role*</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: Full Stack Web Developer"
+                required
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    role: e.target.value,
+                  });
+                }}
+                value={form.role}
+              />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="my-3">
+              <Form.Label>Company*</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: FizzBuzz"
+                required
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    company: e.target.value,
+                  });
+                }}
+                value={form.company}
+              />
+            </Form.Group>
+            <Form.Group className="my-3">
+              <Form.Label>Area*</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: Milano"
+                required
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    area: e.target.value,
+                  });
+                }}
+                value={form.area}
+              />
+            </Form.Group>
+            <Form.Group className="my-3">
+              <Form.Label>Start Date*</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: 2022-06-16"
+                required
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    startDate: e.target.value,
+                  });
+                }}
+                value={form.startDate}
+              />
+            </Form.Group>
+            <Form.Group className="my-3">
+              <Form.Label>End Date</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: 2023-06-16"
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    endDate: e.target.value === "" ? null : e.target.value,
+                  });
+                }}
+                value={form.endDate}
+              />
+            </Form.Group>
+            <Form.Group className="my-3">
+              <Form.Label>Description*</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: Implementing new featurese"
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    description: e.target.value || null,
+                  });
+                }}
+                value={form.description || null}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Salva
+            </Button>
+            {/* <Form.Group>
               <Form.Label>Tipo di impiego</Form.Label>
               <Form.Select aria-label="Default select example">
                 <option>Seleziona</option>
@@ -40,16 +169,8 @@ const ExpModal = () => {
                 <option value="">Apprendistato</option>
                 <option value="">Stagionale</option>
               </Form.Select>
-            </Form.Group>
-            <Form.Group className="my-3">
-              <Form.Label>Nome azienda*</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Microsoft" required />
-            </Form.Group>
-            <Form.Group className="my-3">
-              <Form.Label>Località</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Milano, Italia" />
-            </Form.Group>
-            <Form.Group>
+            </Form.Group> */}
+            {/* <Form.Group>
               <Form.Label>Tipo di località</Form.Label>
               <Form.Select aria-label="Default select example">
                 <option>Seleziona</option>
@@ -57,9 +178,9 @@ const ExpModal = () => {
                 <option value="">Ibrida</option>
                 <option value="">Da remoto</option>
               </Form.Select>
-            </Form.Group>
-            <Form.Check type="switch" id="custom-switch" label="Attualmente ricopro questo ruolo" className="my-3" />
-            <Form.Group>
+            </Form.Group> */}
+            {/* <Form.Check type="switch" id="custom-switch" label="Attualmente ricopro questo ruolo" className="my-3" /> */}
+            {/* <Form.Group>
               <Form.Label className="d-block">Data di inizio*</Form.Label>
               <Form.Select aria-label="Default select example" className="select-w me-1" required>
                 <option>Mese</option>
@@ -114,25 +235,22 @@ const ExpModal = () => {
                 <option value="">1991</option>
                 <option value="">1990</option>
               </Form.Select>
-            </Form.Group>
-            <Form.Group className="my-3">
-              <Form.Label>Settore*</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Sviluppo software" required />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            </Form.Group> */}
+
+            {/* <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Label>Descrizione</Form.Label>
               <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-            <Form.Group className="my-3">
+            </Form.Group> */}
+            {/* <Form.Group className="my-3">
               <Form.Label>Competenze</Form.Label>
               <Form.Control type="text" placeholder="Competenze (es. project management)" />
-            </Form.Group>
+            </Form.Group> */}
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          {/* <Button variant="primary" onClick={handleClose}>
             Salva
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>
