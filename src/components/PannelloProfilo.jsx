@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const PannelloProfilo = () => {
-  const user = useSelector(state => {
+  const user = useSelector((state) => {
     return state.profilo.user;
   });
   useEffect(() => {
@@ -23,8 +23,8 @@ const PannelloProfilo = () => {
             alt="copertina"
             className="w-100 rounded-top"
           />
-          <div className="position-absolute immagine-profilo mb-1">
-            <img src={user.image} alt="profilo" className="w-25 object-fit-cover rounded-circle" />
+          <div className="position-absolute immagine-profilo mb-1 pb-2">
+            <img src={user.image} alt="profilo" className=" object-fit-cover rounded-circle" id="fotoprof" />
           </div>
           <div className="position-absolute border rounded-circle p-2 bg-white text-primary pen">
             <FaPen />
@@ -34,10 +34,10 @@ const PannelloProfilo = () => {
       <Row className="mt-5 justify-content-between">
         <Col xs={9}>
           <div className="d-flex align-items-center">
-            <h2 className="me-2">
+            <h2 className="me-2 mt-4">
               {user.name} {user.surname}
             </h2>
-            <div className="d-flex align-items-center text-primary bordo-tratteggiato-arrotondato">
+            <div className="d-flex align-items-center text-primary bordo-tratteggiato-arrotondato" id="verifica">
               <MdOutlineVerifiedUser />
               <span>Verifica ora</span>
             </div>

@@ -45,7 +45,7 @@ const MyNavbar = () => {
               </div>
             </Navbar.Brand>
           </div>
-          <div className="d-flex gap-4 align-items-center ms-4 ">
+          <div className="d-flex gap-5 align-items-center ms-4 ">
             <div className="d-flex flex-column align-items-center  div-icon">
               <div className="icons">
                 <HouseDoorFill />

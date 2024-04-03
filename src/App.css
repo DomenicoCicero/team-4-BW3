@@ -39,7 +39,7 @@ body {
   background-color: rgb(255, 255, 255);
   border-radius: 18px;
   border: 1px solid rgb(210, 209, 209) !important;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 #dropdown-basic::after {
@@ -49,4 +49,12 @@ body {
 .select-w {
   width: 48% !important;
   display: inline-block !important;
+}
+#fotoprof {
+  border: 8px solid rgb(253, 253, 253);
+  width: 200px;
+}
+#verifica {
+  margin-top: 20px;
+  margin-left: 20px;
 }
