@@ -8,8 +8,9 @@ import { useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import { BsBraces, BsFillBriefcaseFill } from "react-icons/bs";
 import { IoCalendarNumber } from "react-icons/io5";
+import ExpModal from "./ExpModal";
 const EsperienzaProfilo = () => {
-  const user = useSelector((state) => {
+  const user = useSelector(state => {
     return state.profilo.user;
   });
   return (
@@ -20,7 +21,8 @@ const EsperienzaProfilo = () => {
           <div>
             <Dropdown className="d-inline-block">
               <Dropdown.Toggle variant="white" id="dropdown-basic">
-                <FaPlus className="fs-4 me-5" />
+                {/* <FaPlus className="fs-4 me-5" /> */}
+                <ExpModal />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
