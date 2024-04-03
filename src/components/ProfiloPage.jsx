@@ -12,6 +12,7 @@ import Interests from "./Interests";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getFetch } from "../redux/actions";
+import ExpModal from "./ExpModal";
 
 const ProfiloPage = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const ProfiloPage = () => {
           </Col>
         </Row>
         {/* <Footer /> */}
+        <ExpModal />
       </Container>
     </>
   );

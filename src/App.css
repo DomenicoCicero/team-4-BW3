@@ -45,3 +45,8 @@ body {
 #dropdown-basic::after {
   display: none;
 }
+
+.select-w {
+  width: 48% !important;
+  display: inline-block !important;
+}
