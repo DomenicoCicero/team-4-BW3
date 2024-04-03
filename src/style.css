@@ -90,3 +90,9 @@ h2 {
   background-color: rgb(218, 218, 218);
   color: black;
 }
+.experience {
+  display: flex;
+}
+.textexperience {
+  display: flex;
+}
