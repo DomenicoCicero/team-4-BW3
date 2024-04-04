@@ -77,10 +77,41 @@ const MyNavbar = () => {
               <span>Notifiche</span>
             </div>
             <div className="d-flex flex-column align-items-center div-icon">
-              <div className="icons">
+              {/*  */}
+              <Dropdown>
+                <Dropdown.Toggle variant="outline" id="dropdown-basic" style={{ border: "black" }}>
+                  <div className="icons">
+                    <PersonCircle />
+                  </div>
+                  <span>
+                    Profilo{" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-arrow-down"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                      />
+                    </svg>
+                  </span>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Domenico Cicero</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Marco Pala</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Marco Albarella</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+              {/* <div className="icons">
                 <PersonCircle />
               </div>
-              <span>Home</span>
+              <span>Home</span> */}
             </div>
             <Dropdown>
               <Dropdown.Toggle variant="light" id="dropdown-basic" className="custom-dropdown-toggle">
