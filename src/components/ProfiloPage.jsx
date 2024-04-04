@@ -14,6 +14,10 @@ import { useDispatch } from "react-redux";
 import { getFetch, getFetchUser } from "../redux/actions";
 import ExpModal from "./ExpModal";
 import CardExp from "./CardExp";
+import PostCentral from "./PostCentral";
+import PostCard from "./PostCard";
+import PostSx from "./PostSx";
+import PostDx from "./PostDx";
 
 const ProfiloPage = () => {
   const dispatch = useDispatch();
@@ -31,8 +35,8 @@ const ProfiloPage = () => {
             <RisorseProfilo />
             <AttivitaProfilo />
             <EsperienzaProfilo />
-            <Formation></Formation>
-            <Interests></Interests>
+            <Formation />
+            <Interests />
           </Col>
           <Col xs={4}>
             <SideBar />

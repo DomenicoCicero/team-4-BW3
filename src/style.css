@@ -96,3 +96,46 @@ h2 {
 .textexperience {
   display: flex;
 }
+
+#imguser {
+  border-radius: 50%;
+  width: 78px;
+  position: absolute !important;
+  top: 1% !important;
+  left: 50% !important;
+  transform: translate(-50%, 50%);
+}
+.imguser2 {
+  height: 84px !important;
+  border-radius: 18px 18px 0px 0px;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+.testosideprofile {
+  display: flex;
+  padding-left: 3px !important;
+  padding-top: 55px !important;
+  padding-bottom: 4px !important;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.underline-text {
+  text-decoration: underline;
+}
+#colfinal {
+  flex: 0 0 auto;
+  width: 42.666667% !important;
+}
+.footcardhome {
+  margin-top: 17px;
+  border-radius: 0px 0px 18px 18px !important;
+  width: 100%;
+  padding: 9px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 18px;
+  border: 1px solid rgb(210, 209, 209);
+  text-align: center;
+}
