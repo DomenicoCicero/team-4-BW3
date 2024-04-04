@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
-const PutModal = props => {
+const PutModal = (props) => {
   const initialForm = {
     role: props.exp.role,
     image: props.exp.image,
@@ -21,33 +21,36 @@ const PutModal = props => {
   const [upload, setUpload] = useState(false);
   const dispatch = useDispatch();
 
-  const userId = useSelector(state => {
+  const userId = useSelector((state) => {
     return state.profilo.user._id;
   });
 
-  const handlePut = e => {
+  const handlePut = (e) => {
     e.preventDefault();
-    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${props.exp._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: jwt,
-      },
-      body: JSON.stringify(form),
-    })
-      .then(response => {
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${props.exp._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: jwt,
+        },
+        body: JSON.stringify(form),
+      }
+    )
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
           throw new Error("Errore nel reperimento dei dati");
         }
       })
-      .then(data => {
+      .then((data) => {
         setUpload(true);
         alert("Esperienza modificata con successo");
         handleClose();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERRORE", err);
       });
   };
@@ -82,7 +85,7 @@ const PutModal = props => {
                 type="text"
                 placeholder="Esempio: Full Stack Web Developer"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     role: e.target.value,
@@ -96,7 +99,7 @@ const PutModal = props => {
               <Form.Control
                 type="text"
                 placeholder="Esempio: https://......"
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     image: e.target.value,
@@ -111,7 +114,7 @@ const PutModal = props => {
                 type="text"
                 placeholder="Esempio: FizzBuzz"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     company: e.target.value,
@@ -126,7 +129,7 @@ const PutModal = props => {
                 type="text"
                 placeholder="Esempio: Milano"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     area: e.target.value,
@@ -141,7 +144,7 @@ const PutModal = props => {
                 type="text"
                 placeholder="Esempio: 2022-06-16"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     startDate: e.target.value,
@@ -155,7 +158,7 @@ const PutModal = props => {
               <Form.Control
                 type="text"
                 placeholder="Esempio: 2023-06-16"
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     endDate: e.target.value === "" ? null : e.target.value,
@@ -169,7 +172,7 @@ const PutModal = props => {
               <Form.Control
                 type="text"
                 placeholder="Esempio: Implementing new featurese"
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     description: e.target.value || null,
