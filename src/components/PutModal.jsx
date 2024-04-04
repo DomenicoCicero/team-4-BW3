@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +18,7 @@ const PutModal = props => {
   };
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(initialForm);
+  const [upload, setUpload] = useState(false);
   const dispatch = useDispatch();
 
   const userId = useSelector(state => {
@@ -42,12 +43,21 @@ const PutModal = props => {
         }
       })
       .then(data => {
+        setUpload(true);
         alert("Esperienza modificata con successo");
+        handleClose();
       })
       .catch(err => {
         console.log("ERRORE", err);
       });
   };
+
+  useEffect(() => {
+    if (upload) {
+      window.location.reload();
+    }
+    setUpload(false);
+  }, [upload]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
