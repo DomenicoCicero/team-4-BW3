@@ -24,6 +24,31 @@ const PutModal = props => {
     return state.profilo.user._id;
   });
 
+  const handlePut = e => {
+    e.preventDefault();
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${props.exp._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt,
+      },
+      body: JSON.stringify(form),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel reperimento dei dati");
+        }
+      })
+      .then(data => {
+        alert("Esperienza modificata con successo");
+      })
+      .catch(err => {
+        console.log("ERRORE", err);
+      });
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -40,7 +65,7 @@ const PutModal = props => {
           <span className="text-secondary" style={{ fontSize: "10px" }}>
             * Indica che è obbligatorio
           </span>
-          <Form onSubmit={""}>
+          <Form onSubmit={handlePut}>
             <Form.Group className="my-3">
               <Form.Label>Role*</Form.Label>
               <Form.Control
