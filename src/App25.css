@@ -85,7 +85,7 @@ ul > li:hover {
   text-decoration: none;
 }
 
-.footer-custom a:hover {
+.footer-custom span:hover {
   text-decoration: underline;
   color: rgb(0, 204, 255);
 }

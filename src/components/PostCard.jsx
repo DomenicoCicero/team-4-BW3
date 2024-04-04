@@ -10,13 +10,9 @@ import { BsFillSendFill } from "react-icons/bs";
 const PostCard = () => {
   return (
     <Container fluid className="px-4 py-3 my-3 bg-white">
-      <Row className="d-flex align-items-center">
+      <Row className="d-flex align-items-center" id="fotopost">
         <Col xs={2}>
-          <img
-            src="https://www.vigamusacademy.com/beta/wp-content/uploads/2021/06/linguaggio-di-programmazione.jpg"
-            alt="profilo"
-            className="w-100 rounded-circle"
-          />
+          <img src="/img/5.jpg" alt="profilo" style={{ width: "100%" }} id="fotopost" />
         </Col>
         <Col xs={6}>
           <h3>Domenico Cicero</h3>
@@ -49,16 +45,7 @@ const PostCard = () => {
       </Row>
       <Row className="d-flex align-items-center justify-content-between">
         <Col xs={1} className="d-flex ms-3 mt-3 align-items-center">
-          <img
-            src="https://www.vigamusacademy.com/beta/wp-content/uploads/2021/06/linguaggio-di-programmazione.jpg"
-            alt="profilo"
-            className="w-50 rounded-circle"
-          />
-          <img
-            src="https://www.vigamusacademy.com/beta/wp-content/uploads/2021/06/linguaggio-di-programmazione.jpg"
-            alt="profilo"
-            className="w-50 rounded-circle"
-          />
+          <img src="/img/2.png" alt="profilo" className="imgut" />
           <span className="ms-2 text-secondary">80</span>
         </Col>
         <Col xs={5} className="d-flex justify-content-end">
@@ -81,7 +68,7 @@ const PostCard = () => {
         <Col xs={3}>
           <div className="d-flex justify-content-center align-items-center">
             <PiArrowsClockwiseFill className="fs-2" />
-            <span className="ms-3 text-secondary">Diffondi il post</span>
+            <span className="ms-3 text-secondary">Diffondi </span>
           </div>
         </Col>
         <Col xs={3}>

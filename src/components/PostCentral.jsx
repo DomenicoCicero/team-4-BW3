@@ -8,11 +8,9 @@ const PostCentral = () => {
     <Container className="bg-white rounded">
       <Row className="d-flex align-items-center mt-2 mb-4 pt-3">
         <Col xs={2}>
-          <img
-            src="https://www.vigamusacademy.com/beta/wp-content/uploads/2021/06/linguaggio-di-programmazione.jpg"
-            alt="profilo"
-            className="w-100 rounded-circle"
-          />
+          <div id="fotopost">
+            <img src="/img/5.jpg" alt="profilo" style={{ width: "100%" }} id="fotopost" />
+          </div>
         </Col>
         <Col xs={10}>
           <Form>
@@ -22,29 +20,29 @@ const PostCentral = () => {
           </Form>
         </Col>
       </Row>
-      <Row>
-        <Col xs={4}>
+      <Row id="align">
+        <Col xs={5}>
           <div className="d-flex align-items-center justify-content-center">
-            <span className="me-3 text-primary fs-3">
+            <span className="me-3 text-primary ">
               <FaImage />
             </span>
-            <p className="mb-0 text-secondary fs-5">Contenuti multimediali</p>
+            <p className="mb-0 text-secondary ">Contenuti multimediali</p>
           </div>
         </Col>
-        <Col xs={4}>
+        <Col xs={2}>
           <div className="d-flex align-items-center justify-content-center">
-            <span className="me-3 text-warning fs-3">
+            <span className="me-3 text-warning ">
               <FaCalendarAlt />
             </span>
-            <p className="mb-0 text-secondary fs-5">Evento</p>
+            <p className="mb-0 text-secondary ">Evento</p>
           </div>
         </Col>
-        <Col xs={4}>
+        <Col xs={5}>
           <div className="d-flex align-items-center justify-content-center">
             <span className="me-3 text-danger fs-3">
               <MdArticle />
             </span>
-            <p className="mb-0 text-secondary fs-5">Scrivi un articolo</p>
+            <p className="mb-0 text-secondary">Scrivi un articolo</p>
           </div>
         </Col>
       </Row>

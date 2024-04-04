@@ -47,7 +47,7 @@ const PostSx = () => {
                 <hr></hr>
                 <Row style={{ padding: "5px" }}>
                   <Col xs={1}>
-                    <img src="/icons/svg2.svg" alt="" />
+                    <img src="/icons/9.svg" alt="" />
                   </Col>
                   <Col xs={11} id="colfinal">
                     <p className="underline-text" style={{ textAlign: "center" }}>
