@@ -6,6 +6,8 @@ import { SlLike } from "react-icons/sl";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { PiArrowsClockwiseFill } from "react-icons/pi";
 import { BsFillSendFill } from "react-icons/bs";
+import { FaPen } from "react-icons/fa";
+import PostModalPut from "./PostModalPut";
 
 const PostCard = props => {
   const random = Math.floor(Math.random() * 500);
@@ -25,8 +27,8 @@ const PostCard = props => {
           </p>
         </Col>
         <Col xs={4} className="d-flex justify-content-end">
-          <div className="d-flex align-items-top">
-            <GoKebabHorizontal className="fs-4 me-3" />
+          <div className="d-flex align-items-center">
+            <PostModalPut post={props.post} className="fs-6 me-3" />
             <IoMdClose className="fs-4" />
           </div>
         </Col>

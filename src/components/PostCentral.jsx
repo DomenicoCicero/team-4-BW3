@@ -1,17 +1,53 @@
-import { useEffect } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FaImage } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getFetchUser } from "../redux/actions";
 
+const jwt =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+
 const PostCentral = () => {
+  const initialForm = {
+    text: "",
+  };
   const dispatch = useDispatch();
+
+  const [form, setForm] = useState(initialForm);
 
   const user = useSelector(state => {
     return state.profilo.user;
   });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          window.alert("Errore, riprova più tardi!");
+          throw new Error("Errore nel salvataggio delle esperienze");
+        }
+      })
+      .then(data => {
+        // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
+        window.alert("Post pubblicato con successo!");
+        setForm(initialForm);
+      })
+      .catch(err => {
+        console.error("ERRORE!", err);
+      });
+  };
 
   useEffect(() => {
     if (user) {
@@ -28,10 +64,25 @@ const PostCentral = () => {
           </div>
         </Col>
         <Col xs={10}>
-          <Form>
+          <Form className="text-end" onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Avvia un post" className="rounded-50" style={{ height: "80px" }} />
+              <Form.Control
+                type="text"
+                placeholder="Avvia un post"
+                className="rounded-50"
+                style={{ height: "80px" }}
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    text: e.target.value,
+                  });
+                }}
+                value={form.text}
+              />
             </Form.Group>
+            <Button variant="primary" type="submit" className="w-25">
+              Pubblica
+            </Button>
           </Form>
         </Col>
       </Row>
