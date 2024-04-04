@@ -5,6 +5,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getFetchUser } from "../redux/actions";
+import { addPost } from "../redux/actions";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
@@ -17,11 +18,11 @@ const PostCentral = () => {
 
   const [form, setForm] = useState(initialForm);
 
-  const user = useSelector(state => {
+  const user = useSelector((state) => {
     return state.profilo.user;
   });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
       method: "POST",
@@ -31,7 +32,7 @@ const PostCentral = () => {
         Authorization: jwt,
       },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
@@ -39,12 +40,14 @@ const PostCentral = () => {
           throw new Error("Errore nel salvataggio delle esperienze");
         }
       })
-      .then(data => {
+      .then((data) => {
         // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
+        // Aggiorna lo stato locale con il nuovo post aggiunto
+        dispatch(addPost(data));
         window.alert("Post pubblicato con successo!");
         setForm(initialForm);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("ERRORE!", err);
       });
   };
@@ -60,7 +63,12 @@ const PostCentral = () => {
       <Row className="d-flex align-items-center mt-2 mb-4 pt-3">
         <Col xs={2}>
           <div id="fotopost">
-            <img src={user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
+            <img
+              src={user.image}
+              alt="profilo"
+              style={{ width: "100%" }}
+              id="fotopost"
+            />
           </div>
         </Col>
         <Col xs={10}>
@@ -71,7 +79,7 @@ const PostCentral = () => {
                 placeholder="Avvia un post"
                 className="rounded-50"
                 style={{ height: "80px" }}
-                onChange={e => {
+                onChange={(e) => {
                   setForm({
                     ...form,
                     text: e.target.value,

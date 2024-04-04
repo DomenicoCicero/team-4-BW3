@@ -6,14 +6,28 @@ export const DELETE_EXP = "DELETE_EXP";
 export const ADD_EXP = "ADD_EXP";
 export const GET_POSTS = "GET_POSTS";
 
-export const deleteExp = expId => ({
+export const deleteExp = (expId) => ({
   type: DELETE_EXP,
   payload: expId,
 });
 
-export const addExp = expId => ({
+export const addExp = (expId) => ({
   type: ADD_EXP,
   payload: expId,
+});
+
+export const ADD_POST = "ADD_POST";
+
+export const addPost = (post) => ({
+  type: ADD_POST,
+  payload: post,
+});
+
+export const DELETE_POST = "DELETE_POST";
+
+export const deletePost = (postId) => ({
+  type: DELETE_POST,
+  payload: postId,
 });
 
 export const getFetchUser = () => {
@@ -24,47 +38,50 @@ export const getFetchUser = () => {
         Authorization: jwt,
       },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
           throw new Error("errore nel reperimento dei dati");
         }
       })
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: GET_USER,
           payload: data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERRORE", err);
       });
   };
 };
 
-export const getFetchExp = userId => {
+export const getFetchExp = (userId) => {
   return (dispatch, useState) => {
-    fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
-      method: "GET",
-      headers: {
-        Authorization: jwt,
-      },
-    })
-      .then(response => {
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: jwt,
+        },
+      }
+    )
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
           throw new Error("errore nel reperimento dei dati");
         }
       })
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: GET_EXP,
           payload: data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERRORE", err);
       });
   };
@@ -78,20 +95,20 @@ export const getFetchPosts = () => {
         Authorization: jwt,
       },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
           throw new Error("errore nel reperimento dei dati");
         }
       })
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: GET_POSTS,
           payload: data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERRORE", err);
       });
   };

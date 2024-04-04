@@ -9,34 +9,46 @@ import { BsFillSendFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import PostModalPut from "./PostModalPut";
 import { useSelector } from "react-redux";
+import { deletePost, getFetchPosts } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
-const PostCard = props => {
+const PostCard = (props) => {
   const random = Math.floor(Math.random() * 500);
 
   const postUserId = props.post.user._id;
-  const userId = useSelector(state => {
+  const userId = useSelector((state) => {
     return state.profilo.user._id;
   });
+  const dispatch = useDispatch();
+
+  // const deletePost = () => {
+  //   dispatch(getFetchPosts(props.post._id));
+  // };
 
   const deleteFetch = () => {
     if (postUserId === userId) {
-      fetch(`https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: jwt,
-        },
-      })
-        .then(response => {
+      fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: jwt,
+          },
+        }
+      )
+        .then((response) => {
           if (response.ok) {
+            dispatch(deletePost(props.post._id));
             window.alert("cancellato con successo");
           } else {
             throw new Error("errore nella cancellazione");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERRORE", err);
         });
     } else {
@@ -44,11 +56,22 @@ const PostCard = props => {
     }
   };
 
+  // useEffect(() => {
+  //   if (props.post._id) {
+  //     deletePost();
+  //   }
+  // }, [dispatch, props.post._id]);
+
   return (
     <Container fluid className="px-4 py-3 my-3 bg-white">
       <Row className="d-flex align-items-center" id="fotopost">
         <Col xs={2}>
-          <img src={props.post.user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
+          <img
+            src={props.post.user.image}
+            alt="profilo"
+            style={{ width: "100%" }}
+            id="fotopost"
+          />
         </Col>
         <Col xs={6}>
           <h5>
@@ -62,7 +85,11 @@ const PostCard = props => {
         <Col xs={4} className="d-flex justify-content-end">
           <div className="d-flex align-items-center">
             <PostModalPut post={props.post} className="fs-6 me-3" />
-            <IoMdClose className="fs-4" style={{ cursor: "pointer" }} onClick={deleteFetch} />
+            <IoMdClose
+              className="fs-4"
+              style={{ cursor: "pointer" }}
+              onClick={deleteFetch}
+            />
           </div>
         </Col>
       </Row>
@@ -88,7 +115,9 @@ const PostCard = props => {
           <span className="ms-2 text-secondary">{random} mi piace</span>
         </Col>
         <Col xs={5} className="d-flex justify-content-end">
-          <p className="mb-0 text-secondary mt-2">48 commenti - 95 diffusioni post</p>
+          <p className="mb-0 text-secondary mt-2">
+            48 commenti - 95 diffusioni post
+          </p>
         </Col>
       </Row>
       <Row className="mt-3 border-top pt-3">
