@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, FormControl, Image, Modal } from "react-bootstrap";
 import { FaPen } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
@@ -51,6 +51,52 @@ const PostModalPut = props => {
     }
   };
 
+  //   const [selectedFile, setSelectedFile] = useState(null);
+
+  //   const handleFileChange = event => {
+  //     setSelectedFile(event.target.files[0]);
+  //   };
+
+  //   //   const handleUpload = () => {
+
+  //   //   };
+
+  //   const handleSubmit = e => {
+  //     console.log(props.post._id);
+  //     e.preventDefault();
+  //     if (!selectedFile) {
+  //       alert("Seleziona un file prima di caricare");
+  //       return;
+  //     }
+
+  //     const formData = new FormData();
+  //     formData.append("post", selectedFile);
+
+  //     fetch(`https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`, {
+  //       method: "POST",
+  //       body: formData,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: jwt,
+  //       },
+  //     })
+  //       .then(response => {
+  //         if (response.ok) {
+  //           return response.json();
+  //         } else {
+  //           window.alert("Errore, riprova più tardi!");
+  //           throw new Error("Errore nel caricamento della foto");
+  //         }
+  //       })
+  //       .then(data => {
+  //         // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
+  //         window.alert("Foto salvata con successo");
+  //       })
+  //       .catch(err => {
+  //         console.error("ERRORE!", err);
+  //       });
+  //   };
+
   return (
     <>
       <Button variant="white" className="mb-2" onClick={handleShow}>
@@ -81,6 +127,14 @@ const PostModalPut = props => {
             Modifica
           </Button>
         </Form>
+        {/* <Form onSubmit={handleSubmit}>
+        <FormControl type="file" onChange={handleFileChange} />
+        {file && <Image src={file} alt="Uploaded File" thumbnail />}
+        <Button onClick={() => setFile(null)}>Clear</Button>
+        <Button variant="primary" type="button" onClick={handleSubmit}>
+          Carica
+        </Button>
+        </Form> */}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
