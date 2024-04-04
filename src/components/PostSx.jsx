@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getFetchUser } from "../redux/actions";
 
 const PostSx = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => {
+    return state.profilo.user;
+  });
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getFetchUser());
+    }
+  }, []);
   return (
     <Container>
       <Row>
@@ -15,19 +28,14 @@ const PostSx = () => {
                 className="imguser2"
               />
               <div className="logo">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAAaVBMVEX////YAAAAAADXAADtn5/ndnbm5ub6+vrDw8PNzc1gYGDq6ur09PTi4uLc3NxNTU2Xl5c6OjqpqakfHx9VVVXV1dWgoKCOjo4sLCyysrIyMjJra2slJSV+fn51dXVHR0cTExPgS0uGhoYf9JKBAAAEQUlEQVRoge2Zi3KrKhRAd+25iiCKKBDi8/j/H3kQHyFqEzXpnTn3dnc6kzJlgTy2sAKwN359ftj4/LW7yv74gf+f4FHwsC5lVV136Ot/egTneTx+CmJWFXUXug2r1BviGq6rPoULLSP7gajLyElta8T8Ss8JdBwu0zQ09IC5nL6XFALsFBWUx2vwM7gQOIYodzmE9d0Gh50gCJQ6DicxA3DYeQhB13NCp71GmvEvtof9ARz5WgByOAk3nH6S1fQgmhI7LaI+Chdh5UO95PgVQGIXSZ7PExnn0UE4qApBYxdJgm+cFuBqyjhSQOwSpxwnF/8oPCx4D8805zBUjiXOW5BmHqiogrS9Ep/3zbcePQoHpXniZQTJqGnTiMrUcsAUajPKNCnMXyZKxbzNGX2cW5jhIcRAJI2X9Zys0h5QXMYFENJMe6vBXrk16E8Sl8BYM/D9dN6jtWeKSyYyrxHu7tpaL8+yYpRoVHrYXZGmFBe2oTB1ivVxOBR23TUOxySXYngQzJNyLLx24jhcjEmrVnk7w+spb6FuarHaqvwEHikY85Yo5p7jmOIxK8gpO+Qn4JiGVTNU580MNz+xdx/pcTivo+4uvVg4j5hC7X3hZkp/DFcIcYauCzhgFcoFPCPHex7kBeHLnkOgVbIo3Nz/T+A9p1l0EhCKoFuw5fFhCXtOcY/JQOS5rG9j1SLf3z4BPFktCOe8Lm/kmNr0GFAC/vxu3dibu+ADh3abnPBl+PgEI+c+s8Y2U7ZfvPv3H+fCdlwpd0GSdYsn4EBt5lqu5oClZf463JxOrmW+Tn3B5qv5KPwx52X44fiBvw3+z974PcF/764Cn7vjY4z9NeDjG+MH/l+Df+tS/NZN9K3b/wf+t8LJwzdyELMC4+qkKdJ4NkXCctwDCmHTFSw9ZYr4ZIq66Ug7mKL+LHpneE6ZoivqT1jK5YQWfm+KfH3CFIUx9s0t1+HU0coUYQERY4fhfGmKzBQEXc9xTVGmzLjhw6ZIL01Rae4mpHFMUaVpYNdKfNwUIccUddofOGQyRZc8n0/9J0xRt2WKRDuYIo0UDETKi7Q8a4pareXIiSVuPFBmPklYBaW5fRJpl2l7xhTpxGsJYtHFKwMqs+F2oRtPi8KaomEulDxlinhvipQ1RQOn054Z4ZJic1pv5r2FveycKUIdBCSd9vrFmqJLF7de+gZTJFG7NkV2Eb3BFNldlIRXBx6N92fMk2x6ouoVU8TuTNGYt26mqNuq/NwUjdsxdE1RXI9ZgU2G56wpGjJXK9MZvmGKmq1XxhlTpE0aXJqizfv/HlN0WcCh6FamqDxjinDhS28JDzRbmaKt5LLHFC3hSK9MUcaPD0uo16bo2m9bXt2aPG+KCqwrZx/GAyd6kymyHLXJES/DxycYOf++Kfrq2PKqKQJ5bd9jisoWb6S+B988HjJFj7/BfA1+OH7gfwX8D/+NUjqGxZ/YAAAAAElFTkSuQmCC"
-                  alt=""
-                  style={{ position: "absolute", top: "77px", left: "30px" }}
-                  id="imguser"
-                />
+                <img src={user.image} alt="" style={{ position: "absolute", top: "77px", left: "30px" }} id="imguser" />
               </div>
               <div className="testosideprofile">
-                <h3>Marco</h3>
+                <h3>{user.name}</h3>
                 <p>
-                  <span> Marco, scopri le opportunità </span>
-                  <hr></hr>
+                  <span> {user.name}, scopri le opportunità </span>
                 </p>
+                <hr></hr>
               </div>
               <Row style={{ padding: "10px" }}>
                 <Col xs={10}>

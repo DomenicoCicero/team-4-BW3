@@ -7,18 +7,21 @@ import { TfiCommentAlt } from "react-icons/tfi";
 import { PiArrowsClockwiseFill } from "react-icons/pi";
 import { BsFillSendFill } from "react-icons/bs";
 
-const PostCard = () => {
+const PostCard = props => {
+  const random = Math.floor(Math.random() * 500);
   return (
     <Container fluid className="px-4 py-3 my-3 bg-white">
       <Row className="d-flex align-items-center" id="fotopost">
         <Col xs={2}>
-          <img src="/img/5.jpg" alt="profilo" style={{ width: "100%" }} id="fotopost" />
+          <img src={props.post.user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
         </Col>
         <Col xs={6}>
-          <h3>Domenico Cicero</h3>
-          <p className="text-secondary mb-0">780.342 follower</p>
+          <h5>
+            {props.post.user.name} {props.post.user.surname}
+          </h5>
+          <p className="text-secondary mb-0">{props.post.user.area}</p>
           <p className="text-secondary">
-            1s <FaEarthAmericas />
+            {props.post.createdAt.substring(0, 10)} <FaEarthAmericas />
           </p>
         </Col>
         <Col xs={4} className="d-flex justify-content-end">
@@ -30,8 +33,9 @@ const PostCard = () => {
       </Row>
       <Row className="mt-4">
         <Col>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, reprehenderit.</p>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, reprehenderit.</p>
+          <h6>{props.post.user.title}</h6>
+          <p>{props.post.text}</p>
+          <span className="text-secondary">{props.post.user.bio}</span>
         </Col>
       </Row>
       <Row>
@@ -44,9 +48,9 @@ const PostCard = () => {
         </Col>
       </Row>
       <Row className="d-flex align-items-center justify-content-between">
-        <Col xs={1} className="d-flex ms-3 mt-3 align-items-center">
+        <Col xs={5} className="d-flex ms-3 mt-3 align-items-center">
           <img src="/img/2.png" alt="profilo" className="imgut" />
-          <span className="ms-2 text-secondary">80</span>
+          <span className="ms-2 text-secondary">{random} mi piace</span>
         </Col>
         <Col xs={5} className="d-flex justify-content-end">
           <p className="mb-0 text-secondary mt-2">48 commenti - 95 diffusioni post</p>

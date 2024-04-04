@@ -1,15 +1,30 @@
+import { useEffect } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { FaImage } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdArticle } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { getFetchUser } from "../redux/actions";
 
 const PostCentral = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => {
+    return state.profilo.user;
+  });
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getFetchUser());
+    }
+  }, []);
+
   return (
     <Container className="bg-white rounded">
       <Row className="d-flex align-items-center mt-2 mb-4 pt-3">
         <Col xs={2}>
           <div id="fotopost">
-            <img src="/img/5.jpg" alt="profilo" style={{ width: "100%" }} id="fotopost" />
+            <img src={user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
           </div>
         </Col>
         <Col xs={10}>
