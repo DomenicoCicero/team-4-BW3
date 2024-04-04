@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FaPen } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
@@ -12,33 +13,42 @@ const PostModalPut = props => {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState(initialForm);
 
+  const postUserId = props.post.user._id;
+  const userId = useSelector(state => {
+    return state.profilo.user._id;
+  });
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handlePut = e => {
     e.preventDefault();
-    fetch(`https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: jwt,
-      },
-      body: JSON.stringify(form),
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Errore nel reperimento dei dati");
-        }
+    if (postUserId === userId) {
+      fetch(`https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: jwt,
+        },
+        body: JSON.stringify(form),
       })
-      .then(data => {
-        alert("Post modificato con successo");
-        handleClose();
-      })
-      .catch(err => {
-        console.log("ERRORE", err);
-      });
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Errore nel reperimento dei dati");
+          }
+        })
+        .then(data => {
+          alert("Post modificato con successo");
+          handleClose();
+        })
+        .catch(err => {
+          console.log("ERRORE", err);
+        });
+    } else {
+      alert("puoi modificare solo i tuoi post");
+    }
   };
 
   return (

@@ -8,9 +8,42 @@ import { PiArrowsClockwiseFill } from "react-icons/pi";
 import { BsFillSendFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import PostModalPut from "./PostModalPut";
+import { useSelector } from "react-redux";
+
+const jwt =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const PostCard = props => {
   const random = Math.floor(Math.random() * 500);
+
+  const postUserId = props.post.user._id;
+  const userId = useSelector(state => {
+    return state.profilo.user._id;
+  });
+
+  const deleteFetch = () => {
+    if (postUserId === userId) {
+      fetch(`https://striveschool-api.herokuapp.com/api/posts/${props.post._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: jwt,
+        },
+      })
+        .then(response => {
+          if (response.ok) {
+            window.alert("cancellato con successo");
+          } else {
+            throw new Error("errore nella cancellazione");
+          }
+        })
+        .catch(err => {
+          console.log("ERRORE", err);
+        });
+    } else {
+      alert("puoi eliminare solo i tuoi post");
+    }
+  };
+
   return (
     <Container fluid className="px-4 py-3 my-3 bg-white">
       <Row className="d-flex align-items-center" id="fotopost">
@@ -29,7 +62,7 @@ const PostCard = props => {
         <Col xs={4} className="d-flex justify-content-end">
           <div className="d-flex align-items-center">
             <PostModalPut post={props.post} className="fs-6 me-3" />
-            <IoMdClose className="fs-4" />
+            <IoMdClose className="fs-4" style={{ cursor: "pointer" }} onClick={deleteFetch} />
           </div>
         </Col>
       </Row>
