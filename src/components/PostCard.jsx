@@ -20,17 +20,17 @@ const jwt =
 const jwtComment =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxOWJiNjRjNTllYzAwMTk5MGQ2ZjYiLCJpYXQiOjE3MTIzMDIyODYsImV4cCI6MTcxMzUxMTg4Nn0.B0Z4Hq3CXyCas-EhkryGJGoZXl1NU07UfVHlwcBIY7M";
 
-const PostCard = props => {
+const PostCard = (props) => {
   const random = Math.floor(Math.random() * 500);
 
   const [showAddComment, setShowAddComment] = useState(false);
 
   const postUserId = props.post.user._id;
-  const userId = useSelector(state => {
+  const userId = useSelector((state) => {
     return state.profilo.user._id;
   });
 
-  const commentsArray = useSelector(state => {
+  const commentsArray = useSelector((state) => {
     return state.comment.content;
   });
 
@@ -42,14 +42,14 @@ const PostCard = props => {
           Authorization: jwt,
         },
       })
-        .then(response => {
+        .then((response) => {
           if (response.ok) {
             window.alert("cancellato con successo");
           } else {
             throw new Error("errore nella cancellazione");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERRORE", err);
         });
     } else {
@@ -57,7 +57,7 @@ const PostCard = props => {
     }
   };
 
-  const deleteComment = commentId => {
+  const deleteComment = (commentId) => {
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
       method: "DELETE",
       headers: {
@@ -65,7 +65,7 @@ const PostCard = props => {
         Authorization: jwtComment,
       },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           window.alert("Commento eliminato con successo");
         } else {
@@ -73,7 +73,7 @@ const PostCard = props => {
           throw new Error("Problema nel reperimento dei dati");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("ERRORE", error);
       });
   };
@@ -156,13 +156,13 @@ const PostCard = props => {
         </Col>
       </Row>
       {showAddComment && <AddComment elementId={props.post._id} />}
-      <ListGroup className="mt-5 mb-3">
+      <ListGroup className="lista mt-5 mb-3">
         {commentsArray
-          .filter(comment => comment.elementId === props.post._id)
+          .filter((comment) => comment.elementId === props.post._id)
           .map((item, i) => {
             return (
               <div className="d-flex align-items-center py-2">
-                <ListGroup.Item key={i} className="border-0">
+                <ListGroup.Item key={i} className="lista2 border-0">
                   <span className="fw-bold">{item.author}:</span> {item.comment}
                 </ListGroup.Item>
                 <Button
