@@ -20,7 +20,7 @@ const PostSx = () => {
     <Container>
       <Row>
         <Col style={{ position: "relative" }}>
-          <div id="box12" style={{ height: "500px" }}>
+          <div id="box12" style={{ height: "540px" }}>
             <div className="head1">
               <img
                 src="https://www.beverfood.com/wp-content/uploads/2019/05/ichnusa-2019.jpg"

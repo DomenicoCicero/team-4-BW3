@@ -65,7 +65,7 @@ const PostCentral = () => {
         </Col>
         <Col xs={10}>
           <Form className="text-end" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" id="form2">
               <Form.Control
                 type="text"
                 placeholder="Avvia un post"
