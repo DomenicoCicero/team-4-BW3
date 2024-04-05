@@ -7,6 +7,7 @@ import PostCard from "./PostCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFetchComments, getFetchPosts } from "../redux/actions";
+import Footer from "./Footer";
 
 const HomePage = () => {
   const postsArray = useSelector(state => {
@@ -44,6 +45,7 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };
