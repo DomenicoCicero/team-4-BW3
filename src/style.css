@@ -101,12 +101,12 @@ h2 {
   border-radius: 50%;
   width: 78px;
   position: absolute !important;
-  top: 1% !important;
+  top: 10% !important;
   left: 50% !important;
   transform: translate(-50%, 50%);
 }
 .imguser2 {
-  height: 84px !important;
+  height: 130px !important;
   border-radius: 18px 18px 0px 0px;
   width: 100%;
   height: 130px;
@@ -152,3 +152,21 @@ h2 {
 /* .imgut {
   width: 100%;
 } */
+
+#box14 {
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 18px !important;
+  border: 1px solid rgb(210, 209, 209) !important;
+}
+#commenti {
+  background-color: rgba(215, 215, 215, 0.305);
+  padding: 20px;
+}
+.fw-bold {
+  margin-right: 10px;
+}
+
+.mostra {
+  font-size: 13px !important;
+}

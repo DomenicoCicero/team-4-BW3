@@ -20,7 +20,7 @@ const PostSx = () => {
     <Container>
       <Row>
         <Col style={{ position: "relative" }}>
-          <div id="box12" style={{ height: "500px" }}>
+          <div id="box12" style={{ height: "540px" }}>
             <div className="head1">
               <img
                 src="https://www.beverfood.com/wp-content/uploads/2019/05/ichnusa-2019.jpg"
@@ -92,17 +92,10 @@ const PostSx = () => {
               </Col>
             </Row>
             <div className="footcardhome">
-              <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
+              <h3 className="mostra">Mostra Tutto</h3>
             </div>
           </div>
         </Col>
-        {/* <Col xs={6}>
-          <div id="box12" style={{ height: "500px" }}></div>
-        </Col>
-
-        <Col xs={3}>
-          <div id="box12" style={{ height: "500px" }}></div>
-        </Col> */}
       </Row>
     </Container>
   );

@@ -56,21 +56,21 @@ const PostCentral = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded">
+    <Container className="bg-white rounded" id="box14">
       <Row className="d-flex align-items-center mt-2 mb-4 pt-3">
-        <Col xs={2}>
+        <Col xs={2} style={{ marginTop: "-45px" }}>
           <div id="fotopost">
             <img src={user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
           </div>
         </Col>
         <Col xs={10}>
           <Form className="text-end" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" id="form2">
               <Form.Control
                 type="text"
                 placeholder="Avvia un post"
                 className="rounded-50"
-                style={{ height: "80px" }}
+                style={{ height: "46px" }}
                 onChange={e => {
                   setForm({
                     ...form,

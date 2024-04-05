@@ -89,3 +89,8 @@ ul > li:hover {
   text-decoration: underline;
   color: rgb(0, 204, 255);
 }
+
+#form2 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
