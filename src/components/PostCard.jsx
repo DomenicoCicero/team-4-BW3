@@ -13,11 +13,11 @@ import { useSelector } from "react-redux";
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
-const PostCard = props => {
+const PostCard = (props) => {
   const random = Math.floor(Math.random() * 500);
 
   const postUserId = props.post.user._id;
-  const userId = useSelector(state => {
+  const userId = useSelector((state) => {
     return state.profilo.user._id;
   });
 
@@ -29,14 +29,14 @@ const PostCard = props => {
           Authorization: jwt,
         },
       })
-        .then(response => {
+        .then((response) => {
           if (response.ok) {
             window.alert("cancellato con successo");
           } else {
             throw new Error("errore nella cancellazione");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERRORE", err);
         });
     } else {

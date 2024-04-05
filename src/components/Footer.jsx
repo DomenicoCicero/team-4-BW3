@@ -64,7 +64,7 @@ const Footer = () => {
         </Col>
         <Col xs={12} md={2}>
           <p className="m-0">Select Language</p>
-          <Form.Select aria-label="Select language" value="en">
+          <Form.Select aria-label="Select language" defaultValue="en">
             {allLanguages}
           </Form.Select>
         </Col>

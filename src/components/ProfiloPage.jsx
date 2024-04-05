@@ -29,7 +29,7 @@ const ProfiloPage = () => {
       <MyNavbar />
       <Container>
         <Row>
-          <Col xs={8}>
+          <Col xs={12} md={12} lg={8}>
             <PannelloProfilo />
             <AnalisiProfilo />
             <RisorseProfilo />
@@ -38,11 +38,11 @@ const ProfiloPage = () => {
             <Formation />
             <Interests />
           </Col>
-          <Col xs={4}>
+          <Col xs={12} md={12} lg={4}>
             <SideBar />
           </Col>
         </Row>
-        {/* <Footer /> */}
+        <Footer />
       </Container>
     </>
   );

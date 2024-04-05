@@ -3,13 +3,6 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 function SideBar() {
   return (
     <div>
-      {/* <Container className="mt-3"> */}
-      {/* <Row> */}
-      {/* <Col xs={8} md={8} className="centered">
-            <h2>Ciao</h2>
-            <p>Questo è il contenuto della prima colonna.</p>
-          </Col> */}
-      {/* <Col xs={4} md={4}> */}
       {/*  ------------------------------primo box--------------------------------------- */}
       <div className="sideDx">
         <div className="icona">
@@ -277,7 +270,7 @@ function SideBar() {
       {/*  ------------------------------sesto box--------------------------------------- */}
       <div className="sideDx3 pt-4">
         <Row>
-          <Col xs={6}>
+          <Col xs={12} lg={3}>
             <div className="card1 d-flex" style={{ width: "400px" }}>
               <div className="logo">
                 <img src="img/5.jpg" alt="" className="logo2" />
