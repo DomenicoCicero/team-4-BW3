@@ -58,3 +58,16 @@ body {
   margin-top: 20px;
   margin-left: 20px;
 }
+#box14 {
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 18px !important;
+  border: 1px solid rgb(210, 209, 209) !important;
+}
+#commenti {
+  background-color: rgba(215, 215, 215, 0.305);
+  padding: 20px;
+}
+.fw-bold {
+  margin-right: 10px;
+}

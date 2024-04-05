@@ -23,7 +23,7 @@ const PostCard = (props) => {
     return state.profilo.user._id;
   });
 
-  const commentsArray = useSelector(state => {
+  const commentsArray = useSelector((state) => {
     return state.comment.content;
   });
 
@@ -51,7 +51,7 @@ const PostCard = (props) => {
   };
 
   return (
-    <Container fluid className="px-4 py-3 my-3 bg-white">
+    <Container fluid className="px-4 py-3 my-3 bg-white" id="box14">
       <Row className="d-flex align-items-center" id="fotopost">
         <Col xs={2}>
           <img src={props.post.user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
@@ -89,12 +89,12 @@ const PostCard = (props) => {
         </Col>
       </Row>
       <Row className="d-flex align-items-center justify-content-between">
-        <Col xs={5} className="d-flex ms-3 mt-3 align-items-center">
+        <Col xs={5} className="d-flex ms-3 mt-2 align-items-center">
           <img src="/img/2.png" alt="profilo" className="imgut" />
-          <span className="ms-2 text-secondary">{random} mi piace</span>
+          <span className="ms-2 text-secondary">{random} Likes</span>
         </Col>
         <Col xs={5} className="d-flex justify-content-end">
-          <p className="mb-0 text-secondary mt-2">48 commenti - 95 diffusioni post</p>
+          <p className="mb-0 text-secondary mt-2">48 comments - 95 Sharing</p>
         </Col>
       </Row>
       <Row className="mt-3 border-top pt-3">
@@ -123,12 +123,12 @@ const PostCard = (props) => {
           </div>
         </Col>
       </Row>
-      <ListGroup className="mt-4">
+      <ListGroup className="mt-5 mb-3">
         {commentsArray
-          .filter(comment => comment.elementId === props.post._id)
+          .filter((comment) => comment.elementId === props.post._id)
           .map((item, i) => {
             return (
-              <ListGroup.Item key={i}>
+              <ListGroup.Item key={i} id="commenti">
                 <span className="fw-bold">{item.author}:</span> {item.comment}
               </ListGroup.Item>
             );

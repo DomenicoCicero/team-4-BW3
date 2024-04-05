@@ -7,7 +7,7 @@ import { getFetchUser } from "../redux/actions";
 const PostSx = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => {
+  const user = useSelector((state) => {
     return state.profilo.user;
   });
 
@@ -92,7 +92,7 @@ const PostSx = () => {
               </Col>
             </Row>
             <div className="footcardhome">
-              <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
+              <h3 className="mostra">Mostra Tutto</h3>
             </div>
           </div>
         </Col>

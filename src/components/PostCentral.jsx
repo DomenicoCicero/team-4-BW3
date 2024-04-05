@@ -17,11 +17,11 @@ const PostCentral = () => {
 
   const [form, setForm] = useState(initialForm);
 
-  const user = useSelector(state => {
+  const user = useSelector((state) => {
     return state.profilo.user;
   });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
       method: "POST",
@@ -31,7 +31,7 @@ const PostCentral = () => {
         Authorization: jwt,
       },
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
@@ -39,12 +39,12 @@ const PostCentral = () => {
           throw new Error("Errore nel salvataggio delle esperienze");
         }
       })
-      .then(data => {
+      .then((data) => {
         // Dispatch dell'azione addExp per aggiungere l'esperienza allo stato Redux
         window.alert("Post pubblicato con successo!");
         setForm(initialForm);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("ERRORE!", err);
       });
   };
@@ -56,9 +56,9 @@ const PostCentral = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded">
+    <Container className="bg-white rounded" id="box14">
       <Row className="d-flex align-items-center mt-2 mb-4 pt-3">
-        <Col xs={2}>
+        <Col xs={2} style={{ marginTop: "-45px" }}>
           <div id="fotopost">
             <img src={user.image} alt="profilo" style={{ width: "100%" }} id="fotopost" />
           </div>
@@ -70,8 +70,8 @@ const PostCentral = () => {
                 type="text"
                 placeholder="Avvia un post"
                 className="rounded-50"
-                style={{ height: "80px" }}
-                onChange={e => {
+                style={{ height: "46px" }}
+                onChange={(e) => {
                   setForm({
                     ...form,
                     text: e.target.value,
