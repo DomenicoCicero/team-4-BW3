@@ -454,7 +454,7 @@ const MyNavbar = () => {
                       </div>
                     </Dropdown.Item>
                   </div>
-                  <div className="col-6 d-flex flex-column  " id="coldx">
+                  {/* <div className="col-6 d-flex flex-column  " id="coldx">
                     <Dropdown.Item href="#/action-4">Opzione 4</Dropdown.Item>
                     <Dropdown.Item href="#/action-5">Opzione 5</Dropdown.Item>
                     <Dropdown.Item href="#/action-6">Opzione 6</Dropdown.Item>
@@ -462,7 +462,7 @@ const MyNavbar = () => {
                     <Dropdown.Item href="#/action-6">Opzione 6</Dropdown.Item>
                     <Dropdown.Item href="#/action-6">Opzione 6</Dropdown.Item>
                     <Dropdown.Item href="#/action-6">Opzione 6</Dropdown.Item>
-                  </div>
+                  </div> */}
                 </div>
               </Dropdown.Menu>
             </Dropdown>
