@@ -1,4 +1,4 @@
-import { Col, Container, Row, ListGroup } from "react-bootstrap";
+import { Col, Container, Row, ListGroup, Button } from "react-bootstrap";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { GoKebabHorizontal } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
@@ -10,16 +10,23 @@ import { FaPen } from "react-icons/fa";
 import PostModalPut from "./PostModalPut";
 import { useSelector } from "react-redux";
 import CommentList from "./CommentList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AddComment from "./AddComment";
+import { MdDelete } from "react-icons/md";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
-const PostCard = (props) => {
+const jwtComment =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxOWJiNjRjNTllYzAwMTk5MGQ2ZjYiLCJpYXQiOjE3MTIzMDIyODYsImV4cCI6MTcxMzUxMTg4Nn0.B0Z4Hq3CXyCas-EhkryGJGoZXl1NU07UfVHlwcBIY7M";
+
+const PostCard = props => {
   const random = Math.floor(Math.random() * 500);
 
+  const [showAddComment, setShowAddComment] = useState(false);
+
   const postUserId = props.post.user._id;
-  const userId = useSelector((state) => {
+  const userId = useSelector(state => {
     return state.profilo.user._id;
   });
 
@@ -35,19 +42,40 @@ const PostCard = (props) => {
           Authorization: jwt,
         },
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             window.alert("cancellato con successo");
           } else {
             throw new Error("errore nella cancellazione");
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("ERRORE", err);
         });
     } else {
       alert("puoi eliminare solo i tuoi post");
     }
+  };
+
+  const deleteComment = commentId => {
+    fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwtComment,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          window.alert("Commento eliminato con successo");
+        } else {
+          window.alert("Errore nell'eliminazione del commento");
+          throw new Error("Problema nel reperimento dei dati");
+        }
+      })
+      .catch(error => {
+        console.log("ERRORE", error);
+      });
   };
 
   return (
@@ -105,7 +133,11 @@ const PostCard = (props) => {
           </div>
         </Col>
         <Col xs={3}>
-          <div className="d-flex justify-content-center align-items-center">
+          <div
+            className="d-flex justify-content-center align-items-center"
+            onClick={() => setShowAddComment(!showAddComment)}
+            style={{ cursor: "pointer" }}
+          >
             <TfiCommentAlt className="fs-2" />
             <span className="ms-3 text-secondary">Commenta</span>
           </div>
@@ -123,14 +155,20 @@ const PostCard = (props) => {
           </div>
         </Col>
       </Row>
+      {showAddComment && <AddComment elementId={props.post._id} />}
       <ListGroup className="mt-4">
         {commentsArray
           .filter(comment => comment.elementId === props.post._id)
           .map((item, i) => {
             return (
-              <ListGroup.Item key={i}>
-                <span className="fw-bold">{item.author}:</span> {item.comment}
-              </ListGroup.Item>
+              <div className="d-flex align-items-center py-2">
+                <ListGroup.Item key={i}>
+                  <span className="fw-bold">{item.author}:</span> {item.comment}
+                </ListGroup.Item>
+                <Button variant="danger" type="button" className="ms-auto" onClick={() => deleteComment(item._id)}>
+                  <MdDelete />
+                </Button>
+              </div>
             );
           })}
       </ListGroup>
