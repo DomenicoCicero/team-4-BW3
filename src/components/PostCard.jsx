@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { GoKebabHorizontal } from "react-icons/go";
 import { IoMdClose } from "react-icons/io";
@@ -9,6 +9,8 @@ import { BsFillSendFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import PostModalPut from "./PostModalPut";
 import { useSelector } from "react-redux";
+import CommentList from "./CommentList";
+import { useEffect } from "react";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
@@ -19,6 +21,10 @@ const PostCard = (props) => {
   const postUserId = props.post.user._id;
   const userId = useSelector((state) => {
     return state.profilo.user._id;
+  });
+
+  const commentsArray = useSelector(state => {
+    return state.comment.content;
   });
 
   const deleteFetch = () => {
@@ -117,6 +123,17 @@ const PostCard = (props) => {
           </div>
         </Col>
       </Row>
+      <ListGroup className="mt-4">
+        {commentsArray
+          .filter(comment => comment.elementId === props.post._id)
+          .map((item, i) => {
+            return (
+              <ListGroup.Item key={i}>
+                <span className="fw-bold">{item.author}:</span> {item.comment}
+              </ListGroup.Item>
+            );
+          })}
+      </ListGroup>
     </Container>
   );
 };

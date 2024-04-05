@@ -6,11 +6,10 @@ import PostDx from "./PostDx";
 import PostCard from "./PostCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getFetchPosts } from "../redux/actions";
-import Footer from "./Footer";
+import { getFetchComments, getFetchPosts } from "../redux/actions";
 
 const HomePage = () => {
-  const postsArray = useSelector((state) => {
+  const postsArray = useSelector(state => {
     return state.post.content;
   });
 
@@ -18,6 +17,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getFetchPosts());
+    dispatch(getFetchComments());
   }, []);
 
   return (
@@ -25,10 +25,10 @@ const HomePage = () => {
       <MyNavbar />
       <Container>
         <Row>
-          <Col xs={12} md={12} lg={3}>
+          <Col xs={3}>
             <PostSx />
           </Col>
-          <Col xs={12} md={12} lg={6}>
+          <Col xs={6}>
             <PostCentral />
             {postsArray &&
               postsArray.map((post, i) => {
@@ -38,17 +38,11 @@ const HomePage = () => {
                   </div>
                 );
               })}
-            {/* <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard /> */}
           </Col>
-          <Col xs={12} md={12} lg={3}>
+          <Col xs={3}>
             <PostDx />
           </Col>
         </Row>
-        <Footer></Footer>
       </Container>
     </>
   );
