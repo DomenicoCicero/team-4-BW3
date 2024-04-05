@@ -26,10 +26,10 @@ const HomePage = () => {
       <MyNavbar />
       <Container>
         <Row>
-          <Col xs={3}>
+          <Col xs={12} md={12} lg={3}>
             <PostSx />
           </Col>
-          <Col xs={6}>
+          <Col xs={12} md={12} lg={6}>
             <PostCentral />
             {postsArray &&
               postsArray.map((post, i) => {
@@ -40,7 +40,7 @@ const HomePage = () => {
                 );
               })}
           </Col>
-          <Col xs={3}>
+          <Col xs={12} md={12} lg={3}>
             <PostDx />
           </Col>
         </Row>
