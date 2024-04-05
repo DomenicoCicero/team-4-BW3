@@ -1,6 +1,45 @@
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
+// const jwt =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 function SideBar() {
+  const [users, setUsers] = useState([]);
+  const [users1, setUsers1] = useState([]);
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
+
+  const getFetchUsers = () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/`, {
+      method: "GET",
+      headers: {
+        Authorization: jwt,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("errore nel reperimento dei dati");
+        }
+      })
+      .then(data => {
+        console.log(data.slice(0, 6));
+        setUsers(data.slice(0, 6));
+        setUsers1(data.slice(7, 11));
+      })
+      .catch(err => {
+        console.log("ERRORE", err);
+      });
+  };
+
+  useEffect(() => {
+    getFetchUsers();
+  }, []);
   return (
     <div>
       {/*  ------------------------------primo box--------------------------------------- */}
@@ -73,152 +112,59 @@ function SideBar() {
       {/*   -------------------------terzo box------------------------------------ */}
       <div className="sideDx3">
         <h2 style={{ fontSize: "22px", marginLeft: "16px", marginTop: "22px" }}>Altri profilii simili</h2>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <div className="footcard">
-          <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
-        </div>
+        {users1.map(user => {
+          return (
+            <Row key={user._id}>
+              <Col xs={6}>
+                <div className="card1 d-flex" style={{ width: "400px" }}>
+                  <div className="logo">
+                    <img src={user.image} alt="" className="logo1" />
+                  </div>
+                  <div className="testodi">
+                    <h3 className="ms-3">
+                      {user.name} {user.surname}
+                    </h3>
+                    <p className="ms-3">{user.email}</p>
+                    <Button variant="outline-secondary" id="btn5">
+                      Visualizza il Profilo
+                    </Button>
+                    <hr />
+                  </div>
+                </div>
+              </Col>{" "}
+            </Row>
+          );
+        })}
       </div>
       {/*  ------------------------------quarto box--------------------------------------- */}
 
       <div className="sideDx3">
         <h2 style={{ fontSize: "22px", marginLeft: "16px", marginTop: "22px" }}>Persone che potresti conoscere</h2>
         <span className="ms-3">Dalla tua scuola o università</span>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">Marco Pala</h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-                <hr />
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="card1 d-flex" style={{ width: "400px" }}>
-              <div className="logo">
-                <img src="img/my.jpg" alt="" className="logo1" />
-              </div>
-              <div className="testodi">
-                <h3 className="ms-3">
-                  {/*      ----------------------------------------quinda card------------------------------------------- */}
-                  Marco Pala
-                </h3>
-                <p className="ms-3">Architetto</p>
-                <Button variant="outline-secondary" id="btn5">
-                  Visualizza il Profilo
-                </Button>
-              </div>
-            </div>
-          </Col>{" "}
-        </Row>
+        {users.map(user => {
+          return (
+            <Row key={user._id}>
+              <Col xs={6}>
+                <div className="card1 d-flex" style={{ width: "400px" }}>
+                  <div className="logo">
+                    <img src={user.image} alt="" className="logo1" />
+                  </div>
+                  <div className="testodi">
+                    <h3 className="ms-3">
+                      {user.name} {user.surname}
+                    </h3>
+                    <p className="ms-3">{user.email}</p>
+                    <Button variant="outline-secondary" id="btn5">
+                      Visualizza il Profilo
+                    </Button>
+                    <hr />
+                  </div>
+                </div>
+              </Col>{" "}
+            </Row>
+          );
+        })}
+
         <div className="footcard">
           <h3 style={{ fontSize: "19px" }}>Mostra Tutto</h3>
         </div>
@@ -299,9 +245,6 @@ function SideBar() {
           </Col>{" "}
         </Row>
       </div>
-      {/* </Col> */}
-      {/* </Row> */}
-      {/* </Container> */}
     </div>
   );
 }

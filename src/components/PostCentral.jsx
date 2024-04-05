@@ -6,14 +6,18 @@ import { MdArticle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getFetchUser } from "../redux/actions";
 
-const jwt =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+// const jwt =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const PostCentral = () => {
   const initialForm = {
     text: "",
   };
   const dispatch = useDispatch();
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
 
   const [form, setForm] = useState(initialForm);
 
@@ -51,7 +55,7 @@ const PostCentral = () => {
 
   useEffect(() => {
     if (user) {
-      dispatch(getFetchUser());
+      dispatch(getFetchUser(jwt));
     }
   }, []);
 

@@ -14,23 +14,27 @@ import { useEffect, useState } from "react";
 import AddComment from "./AddComment";
 import { MdDelete } from "react-icons/md";
 
-const jwt =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+// const jwt =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const jwtComment =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxOWJiNjRjNTllYzAwMTk5MGQ2ZjYiLCJpYXQiOjE3MTIzMDIyODYsImV4cCI6MTcxMzUxMTg4Nn0.B0Z4Hq3CXyCas-EhkryGJGoZXl1NU07UfVHlwcBIY7M";
 
-const PostCard = (props) => {
+const PostCard = props => {
   const random = Math.floor(Math.random() * 500);
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
 
   const [showAddComment, setShowAddComment] = useState(false);
 
   const postUserId = props.post.user._id;
-  const userId = useSelector((state) => {
+  const userId = useSelector(state => {
     return state.profilo.user._id;
   });
 
-  const commentsArray = useSelector((state) => {
+  const commentsArray = useSelector(state => {
     return state.comment.content;
   });
 
@@ -42,14 +46,14 @@ const PostCard = (props) => {
           Authorization: jwt,
         },
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             window.alert("cancellato con successo");
           } else {
             throw new Error("errore nella cancellazione");
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("ERRORE", err);
         });
     } else {
@@ -57,7 +61,7 @@ const PostCard = (props) => {
     }
   };
 
-  const deleteComment = (commentId) => {
+  const deleteComment = commentId => {
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
       method: "DELETE",
       headers: {
@@ -65,7 +69,7 @@ const PostCard = (props) => {
         Authorization: jwtComment,
       },
     })
-      .then((response) => {
+      .then(response => {
         if (response.ok) {
           window.alert("Commento eliminato con successo");
         } else {
@@ -73,7 +77,7 @@ const PostCard = (props) => {
           throw new Error("Problema nel reperimento dei dati");
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("ERRORE", error);
       });
   };
@@ -158,21 +162,23 @@ const PostCard = (props) => {
       {showAddComment && <AddComment elementId={props.post._id} />}
       <ListGroup className="lista1 mt-5 mb-3">
         {commentsArray
-          .filter((comment) => comment.elementId === props.post._id)
+          .filter(comment => comment.elementId === props.post._id)
           .map((item, i) => {
             return (
               <div className="d-flex align-items-center py-2">
                 <ListGroup.Item key={i} className="lista2 border-0">
                   <span className="fw-bold">{item.author}:</span> {item.comment}
                 </ListGroup.Item>
-                <Button
-                  variant="white"
-                  type="button"
-                  className="ms-auto text-danger"
-                  onClick={() => deleteComment(item._id)}
-                >
-                  <MdDelete />
-                </Button>
+                {(postUserId === userId || item.author === "domenico.cicero8@gmail.com") && (
+                  <Button
+                    variant="white"
+                    type="button"
+                    className="ms-auto text-danger"
+                    onClick={() => deleteComment(item._id)}
+                  >
+                    <MdDelete />
+                  </Button>
+                )}
               </div>
             );
           })}

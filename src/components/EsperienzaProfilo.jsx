@@ -15,11 +15,15 @@ import CardExp from "./CardExp";
 import { MdDelete } from "react-icons/md";
 import PutModal from "./PutModal";
 
-const jwt =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+// const jwt =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const EsperienzaProfilo = () => {
   const dispatch = useDispatch();
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
 
   const expArray = useSelector(state => {
     return state.exp.content;
@@ -34,7 +38,7 @@ const EsperienzaProfilo = () => {
   });
 
   const fetchExperiences = () => {
-    dispatch(getFetchExp(userId));
+    dispatch(getFetchExp(userId, jwt));
   };
 
   const deleteFetch = expId => {
@@ -57,7 +61,7 @@ const EsperienzaProfilo = () => {
       });
   };
 
-  const putFetch = () => {};
+  // const putFetch = () => {};
 
   useEffect(() => {
     if (userId) {

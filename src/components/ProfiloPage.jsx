@@ -18,11 +18,17 @@ import PostCentral from "./PostCentral";
 import PostCard from "./PostCard";
 import PostSx from "./PostSx";
 import PostDx from "./PostDx";
+import { useSelector } from "react-redux";
 
 const ProfiloPage = () => {
   const dispatch = useDispatch();
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
+
   useEffect(() => {
-    dispatch(getFetchUser());
+    dispatch(getFetchUser(jwt));
   }, []);
   return (
     <>

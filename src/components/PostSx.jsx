@@ -3,9 +3,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getFetchUser } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 const PostSx = () => {
   const dispatch = useDispatch();
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
 
   const user = useSelector(state => {
     return state.profilo.user;
@@ -13,7 +18,7 @@ const PostSx = () => {
 
   useEffect(() => {
     if (user) {
-      dispatch(getFetchUser());
+      dispatch(getFetchUser(jwt));
     }
   }, []);
   return (
@@ -28,7 +33,14 @@ const PostSx = () => {
                 className="imguser2"
               />
               <div className="logo">
-                <img src={user.image} alt="" style={{ position: "absolute", top: "77px", left: "30px" }} id="imguser" />
+                <Link to={"/profilo"} className="nav-link">
+                  <img
+                    src={user.image}
+                    alt=""
+                    style={{ position: "absolute", top: "77px", left: "30px", cursor: "pointer" }}
+                    id="imguser"
+                  />
+                </Link>
               </div>
               <div className="testosideprofile">
                 <h3>{user.name}</h3>

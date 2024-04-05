@@ -3,8 +3,8 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
-const jwt =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
+// const jwt =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjBkMDFkMGY5NGY0YTAwMTkzNzkxNjUiLCJpYXQiOjE3MTIxMjg0NjQsImV4cCI6MTcxMzMzODA2NH0.rrAz-vY_R1pN6Zjj9pjzUoV5PUAFIOfYKwZONwGTEzo";
 
 const PutModal = props => {
   const initialForm = {
@@ -20,6 +20,10 @@ const PutModal = props => {
   const [form, setForm] = useState(initialForm);
   const [upload, setUpload] = useState(false);
   const dispatch = useDispatch();
+
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
 
   const userId = useSelector(state => {
     return state.profilo.user._id;

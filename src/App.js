@@ -4,12 +4,18 @@ import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProfiloPage from "./components/ProfiloPage";
 import HomePage from "./components/HomePage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App" style={{ backgroundColor: "#F4F2EE" }}>
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <div className="App" style={{ backgroundColor: "#F4F2EE" }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profilo" element={<ProfiloPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

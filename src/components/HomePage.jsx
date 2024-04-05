@@ -14,10 +14,14 @@ const HomePage = () => {
     return state.post.content;
   });
 
+  const jwt = useSelector(state => {
+    return state.profilo.jwtCurrent;
+  });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFetchPosts());
+    dispatch(getFetchPosts(jwt));
     dispatch(getFetchComments());
   }, []);
 

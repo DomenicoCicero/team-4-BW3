@@ -12,7 +12,25 @@ import { List } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Search } from "react-bootstrap-icons";
 import { InputGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { changeJwt } from "../redux/actions";
+
 const MyNavbar = () => {
+  const dispatch = useDispatch();
+
+  const jwtDomenico = useSelector(state => {
+    return state.jwt.domenico;
+  });
+
+  const jwtAlbarella = useSelector(state => {
+    return state.jwt.marcoAlbarella;
+  });
+
+  const jwtPala = useSelector(state => {
+    return state.jwt.marcoPala;
+  });
+
   return (
     <Navbar expand="lg" className=" p-0 mb-4" bg="light" id="mainNav">
       <Container>
@@ -46,12 +64,15 @@ const MyNavbar = () => {
             </Navbar.Brand>
           </div>
           <div className="d-flex gap-5 align-items-center ms-4 ">
-            <div className="d-flex flex-column align-items-center  div-icon">
-              <div className="icons">
-                <HouseDoorFill />
+            <Link to={"/"} className="nav-link">
+              <div className="d-flex flex-column align-items-center  div-icon">
+                <div className="icons">
+                  <HouseDoorFill />
+                </div>
+                <span>Home</span>
               </div>
-              <span>Home</span>
-            </div>
+            </Link>
+
             <div className="d-flex flex-column align-items-center div-icon">
               <div className="icons">
                 <PeopleFill />
@@ -102,9 +123,21 @@ const MyNavbar = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Domenico Cicero</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Marco Pala</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Marco Albarella</Dropdown.Item>
+                  <Link to={"/profilo"} className="nav-link">
+                    <Dropdown.Item href="#/action-1" onClick={() => dispatch(changeJwt(jwtDomenico))}>
+                      Domenico Cicero
+                    </Dropdown.Item>
+                  </Link>
+                  <Link to={"/profilo"} className="nav-link">
+                    <Dropdown.Item href="#/action-2" onClick={() => dispatch(changeJwt(jwtPala))}>
+                      Marco Pala
+                    </Dropdown.Item>
+                  </Link>
+                  <Link to={"/profilo"} className="nav-link">
+                    <Dropdown.Item href="#/action-3" onClick={() => dispatch(changeJwt(jwtAlbarella))}>
+                      Marco Albarella
+                    </Dropdown.Item>
+                  </Link>
                 </Dropdown.Menu>
               </Dropdown>
 
