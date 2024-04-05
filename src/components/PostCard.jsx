@@ -156,7 +156,7 @@ const PostCard = (props) => {
         </Col>
       </Row>
       {showAddComment && <AddComment elementId={props.post._id} />}
-      <ListGroup className="lista mt-5 mb-3">
+      <ListGroup className="lista1 mt-5 mb-3">
         {commentsArray
           .filter((comment) => comment.elementId === props.post._id)
           .map((item, i) => {
